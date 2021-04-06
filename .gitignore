@@ -1,0 +1,5 @@
+/db/database
+/web/log
+/web/*.sqlite
+/web/migrations
+/web/__pycache__
