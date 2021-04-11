@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+スコア - {{ super() }}
+{% endblock %}
+{% block content %}
+<div>
+    <div class="row">
+        <div class="col">単語</div>
+        <div class="col">意味</div>
+        <div class="col">ミスタイプ</div>
+    </div>
+    {% for score in scores %}
+    <div class="row">
+        <div class="col">{{ score.Word.text }}</div>
+        <div class="col">{{ score.Word.comment }}</div>
+        <div class="col">{{ score.typemiss_count }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

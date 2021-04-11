@@ -3,60 +3,51 @@
 ブック一覧 - {{ super() }}
 {% endblock %}
 {% block content %}
-<div>
-    <form method="POST">
-        {{ form.csrf_token }}
-        {{ form.name() }}
-        {{ form.description() }}
-        {{ form.submit() }}
-    </form>
-</div>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% if books %}
-    {% for book in books %}
-    <div class="col">
-        <div class="card h-100 text-center">
-            <div class="card-header">
-                <ul class="nav nav-pills card-header-pills">
-                    <li class="nav-item">
-                        <a href="/game/{{ book.id }}" class="nav-link active">タイピング</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/words/{{ book.id }}" class="nav-link">編集</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/delete_book/{{ book.id }}" class="nav-link">削除</a>
+<div class="card__wrapper">
+    <div class="card">
+        <form method="POST">
+            {{ form.csrf_token }}
+            <div class="card__header">
+                <ul class="card__nav">
+                    <li class="card__nav__item">
+                        {{ form.submit() }}
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
-                <h4 class="card-title">{{ book.name }}</h4>
-                <p class="card-text">{{ book.description }}</p>
+            <div class="card__body">
+                <h4 class="card__title">{{ form.name() }}</h4>
+                <p class="card__text">{{ form.description() }}</p>
             </div>
-            <dv class="card-footer">
-                <small class="text-muted">更新日:{{ book.update_at.strftime('%Y-%m-%d') }}</small>
-            </dv>
+            <div class="card__footer">
+                <small class="text__muted">新規作成</small>
+            </div>
+        </form>
+    </div>
+    {% if books %}
+    {% for book in books %}
+    <div class="card">
+        <div class="card__header">
+            <ul class="card__nav">
+                <li class="card__nav__item">
+                    <a href="/game/{{ book.id }}" class="nav-link active">タイピング</a>
+                </li>
+                <li class="card__nav__item">
+                    <a href="/score/{{ book.id }}" class="nav-link">スコア</a>
+                </li>
+                <li class="card__nav__item">
+                    <a href="/words/{{ book.id }}" class="nav-link">編集</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card__body">
+            <h4 class="card__title">{{ book.name }}</h4>
+            <p class="card__text">{{ book.description }}</p>
+        </div>
+        <div class="card__footer">
+            <small class="text__muted">更新日:{{ book.update_at.strftime('%Y-%m-%d') }}</small>
         </div>
     </div>
     {% endfor %}
-    {% else %}
-    <div class="col">
-        <div class="card h-100 text-center">
-            <div class="card-header">
-                <ul class="nav nav-pills card-header-pills">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link disabled" aria-disabled="true">編集</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link disabled" aria-disabled="true">削除</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">単語ブックが存在しません。</h5>
-            </div>
-        </div>
-    </div>
     {% endif %}
 </div>
 {% endblock %}

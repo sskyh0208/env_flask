@@ -3,3 +3,4 @@
 /web/*.sqlite
 /web/migrations
 /web/__pycache__
+/old

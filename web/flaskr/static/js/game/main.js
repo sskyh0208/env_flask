@@ -6,6 +6,7 @@ document.addEventListener('keydown', function(e){
         game.typed(e);
         if (game.gameOver) {
             document.removeEventListener('keydown', function(e){});
+            game.registerScore();
         }
     }
 });

@@ -12,6 +12,8 @@ class Game {
         // 失敗回数表示用spanタグ
         this.failed = document.getElementById('failed');
         this.checkTexts = [];
+        this.scoreWords = {};
+        this.typingWord = '';
         this.successCount = 0;
         this.failedCount = 0;
 
@@ -32,6 +34,20 @@ class Game {
         this.h1.textContent = '終了！！！';
     };
 
+    // ゲームスコア登録
+    registerScore(){
+        $.ajax({
+            url: '/game/score',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(this.scoreWords)
+        }).done(function(data) {
+            return;
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+            return;
+        })
+
+    }
     // タイピング文字列の順番をシャッフル
     shuffle(array) {
         for (var i = (array.length - 1); 0 < i; i--) {
@@ -48,6 +64,9 @@ class Game {
         this.h1.textContent = '';
         // コメントを変える
         this.h1.textContent = this.words[0].comment;
+        // スコア用の辞書と、参照用の変数にタイピング中の文字列を入れる
+        this.typingWordId = String(this.words[0].id);
+        this.scoreWords[String(this.words[0].id)] = 0;
         // spanを作り、一文字ずつspanに入れる
         var splitWord = this.words[0].text.split('');
         for (var i = 0; i < splitWord.length; i++) {
@@ -55,7 +74,9 @@ class Game {
             // pタグ子要素にする
             this.p.appendChild(span);
             // チェック用配列に入れる
-            this.checkTexts.push(span);
+            if(splitWord[i] != " ") {
+                this.checkTexts.push(span);
+            }
         }
     };
 
@@ -93,6 +114,7 @@ class Game {
             }
         // タイプミス判定
         } else {
+            this.scoreWords[String(this.typingWordId)] ++;
             this.failedCount ++;
             this.failed.textContent = this.failedCount;
         }

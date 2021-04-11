@@ -2,8 +2,9 @@ from flask import Blueprint, abort, render_template, redirect, url_for ,request,
 from flask_login import login_user, login_required, logout_user, current_user
 
 from flaskr import db
-from flaskr.models import User, PasswordResetToken, Word, Book
+from flaskr.models import User, PasswordResetToken, Word, Book, Score
 from flaskr.forms import LoginForm, RegisterForm, ResetPasswordForm, WordForm, AccountForm, BookForm
+from sqlalchemy import desc
 
 bp = Blueprint('app', __name__, url_prefix='')
 
@@ -182,6 +183,42 @@ def delete_word(book_id, word_id):
 @login_required
 def game(book_id):
     words = Word.get_book_words(book_id)
-    type_words = [{'text': word.text, 'comment': word.comment} for word in words]
+    type_words = [{'id': word.id, 'text': word.text, 'comment': word.comment} for word in words]
     
     return render_template('game.html', words=type_words)
+
+
+@bp.route('/game/score', methods=['POST'])
+@login_required
+def game_score():
+    for word_id, typemiss_count in request.json.items():
+        # タイプミスしていないワードはスコアに登録しない
+        print(word_id, typemiss_count)
+        if not typemiss_count:
+            continue
+
+        score = Score(
+            user_id=current_user.id,
+            word_id=word_id,
+            typemiss_count=typemiss_count
+        )
+        
+        with db.session.begin(subtransactions=True):
+            score.create_new_score()
+        db.session.commit()
+    return "h1"
+
+@bp.route('/score/<int:book_id>')
+@login_required
+def score(book_id):
+    scores = (
+        db.session.query(Word, db.func.sum(Score.typemiss_count).label('typemiss_count'))
+        .filter(book_id == Word.book_id)
+        .filter(Score.word_id == Word.id)
+        .filter(Score.user_id == current_user.id)
+        .group_by(Word.id)
+        .order_by(desc('typemiss_count'))
+        .all()
+    )
+
+    return render_template('score.html', scores=scores)

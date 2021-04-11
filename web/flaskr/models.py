@@ -176,3 +176,29 @@ class Word(db.Model):
         if not self.comment == comment:
             return False
         return True
+
+
+class Score(db.Model):
+    __tablename__ = 'score'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    word_id = db.Column(db.Integer, db.ForeignKey('words.id'), nullable=False)
+    typemiss_count = db.Column(db.Integer)
+    create_at = db.Column(db.DateTime, default=datetime.now())
+
+    def __init__(self, user_id, word_id, typemiss_count):
+        self.user_id = user_id
+        self.word_id = word_id
+        self.typemiss_count = typemiss_count
+
+    def create_new_score(self):
+        db.session.add(self)
+
+    @classmethod
+    def get_book_score(cls, book_id):
+        return cls.query.filter_by(book_id=book_id).order_by(cls.typemiss_count.desc()).all()
+
+    @classmethod
+    def clear_score(cls, user_id):
+        cls.query.filter_by(user_id=user_id).delete()
+    
