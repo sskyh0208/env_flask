@@ -3,18 +3,18 @@
 スコア - {{ super() }}
 {% endblock %}
 {% block content %}
-<div>
-    <div class="row">
-        <div class="col">単語</div>
-        <div class="col">意味</div>
-        <div class="col">ミスタイプ</div>
-    </div>
+<div class="score__table">
+    <dl>
+        <dt>単語</dt>
+        <dd>意味</dd>
+        <dd>ミスタイプ</dd>
+    </dl>
     {% for score in scores %}
-    <div class="row">
-        <div class="col">{{ score.Word.text }}</div>
-        <div class="col">{{ score.Word.comment }}</div>
-        <div class="col">{{ score.typemiss_count }}</div>
-    </div>
+    <dl>
+        <dt>{{ score.Word.text }}</dt>
+        <dd>{{ score.Word.comment }}</dd>
+        <dd>{{ score.typemiss_count }}</dd>
+    </dl>
     {% endfor %}
 </div>
 {% endblock %}
