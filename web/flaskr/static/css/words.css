@@ -1,0 +1,25 @@
+.word__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score__table dl,
+.word__form dl,
+.word__table dl {
+    display: flex;
+}
+
+.score__table dl dt,
+.score__table dl dd,
+.word__form dl dt,
+.word__form dl dd,
+.word__table dl dt,
+.word__table dl dd {
+    width: 160px;
+}
+
+.word__form dl dd:nth-child(3),
+.word__table dl dd:nth-child(3),
+.word__table dl dd:nth-child(4) {
+    width: 48px;
+}

@@ -3,6 +3,7 @@
 スコア - {{ super() }}
 {% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/score.css') }}">
 <div class="score__table">
     <dl>
         <dt>単語</dt>

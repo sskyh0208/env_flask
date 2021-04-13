@@ -156,6 +156,8 @@ class Word(db.Model):
 
     def create_new_word(self):
         db.session.add(self)
+        book = Book.get_by_id(self.book_id)
+        book.update()
 
     @classmethod
     def delete(cls, id):
@@ -167,8 +169,8 @@ class Word(db.Model):
         self.update_at = datetime.now()
         db.session.add(self)
         # ブックの更新日時も更新
-        word = Word.get_by_id(self.book_id)
-        word.update()
+        book = Book.get_by_id(self.book_id)
+        book.update()
     
     def check(self, text, comment):
         if not self.text == text:

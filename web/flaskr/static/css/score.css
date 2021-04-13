@@ -1,0 +1,8 @@
+.score__table dl {
+    display: flex;
+}
+
+.score__table dl dt,
+.score__table dl dd {
+    width: 160px;
+}

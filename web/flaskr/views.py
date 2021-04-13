@@ -183,7 +183,7 @@ def delete_word(book_id, word_id):
 @login_required
 def game(book_id):
     words = Word.get_book_words(book_id)
-    type_words = [{'id': word.id, 'text': word.text, 'comment': word.comment} for word in words]
+    type_words = [{'id': word.id, 'text': word.text, 'comment': word.comment, 'book_id': word.book_id} for word in words]
     
     return render_template('game.html', words=type_words)
 
@@ -191,16 +191,16 @@ def game(book_id):
 @bp.route('/game/score', methods=['POST'])
 @login_required
 def game_score():
-    for word_id, typemiss_count in request.json.items():
+    for word in request.json:
         # タイプミスしていないワードはスコアに登録しない
-        print(word_id, typemiss_count)
-        if not typemiss_count:
+        print(word.get('id'), word.get('text'), word.get('comment'), word.get('count'))
+        if not word.get('count'):
             continue
 
         score = Score(
             user_id=current_user.id,
-            word_id=word_id,
-            typemiss_count=typemiss_count
+            word_id=word.get('id'),
+            typemiss_count=word.get('count')
         )
         
         with db.session.begin(subtransactions=True):

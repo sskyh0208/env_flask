@@ -3,6 +3,7 @@
 単語登録 - {{ super() }}
 {% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/words.css') }}">
 <script>
     var bookId = {{ book.id }};
 </script>

@@ -18,3 +18,23 @@ span {
     font-size: 0.5em;
     color: #00f;
 }
+
+#result {
+    display: flex;
+    justify-content: center;
+}
+
+#result a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+dl {
+    display: flex;
+    text-align: center;
+}
+
+dt,
+dd {
+    width: 160px;
+}
