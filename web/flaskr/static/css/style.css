@@ -2,13 +2,17 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
     caret-color: transparent;
+    margin: 0;
+    padding: 0;
 }
 
 
 .site-header {
-    background: #fff;
+    background: #2a3644;
+    color: #fff;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding: 20px 20px;
     position: fixed;
     width: 100%;
@@ -32,7 +36,7 @@ html,body{
 }
 
 .gnav__menu__item a {
-    color: #333;
+    color: #fff;
     text-decoration: none;
 }
 

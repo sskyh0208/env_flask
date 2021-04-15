@@ -4,7 +4,7 @@
 }
 
 .card {
-    background: #fff;
+    background: #2a3644;
     border-radius: 5px;
     box-shadow: 0 2px 5px #ccc;
     width: 320px;
@@ -19,10 +19,11 @@
 
 .card__header input {
     border: 0;
-    background: #fff;
-    color: teal;
+    background: #f26964;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #fff;
     font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
 }
 
@@ -40,14 +41,23 @@
 }
 
 .card__nav__item a {
-    color: teal;
+    color: #f26964;
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
 }
 
 .card__body input {
-    caret-color: black;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.card__body h4 {
+    color: #fff;
+}
+
+.card__body p {
+    color: #fff;
 }
 
 .card__footer {
