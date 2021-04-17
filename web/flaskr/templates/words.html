@@ -17,24 +17,16 @@
 <div class="word__form">
     <form method="POST">
         {{ form.csrf_token }}
-        <dl>
-            <dt>
-                {{ form.text() }}
-            </dt>
-            <dd>
-                {{ form.comment() }}
-            </dd>
-            <dd>
-                {{ form.submit() }}
-            </dd>
-            <dd>
-                <button onclick="location.href='/delete_book/{{ book.id }}'">ブックの削除</a>
-            </dd>
-        </dl>
+        {{ form.text() }}
+        {{ form.comment() }}
+        <div class="word__form__btn">
+            {{ form.submit() }}
+            <button onclick="location.href='/delete_book/{{ book.id }}'">ブックの削除</a>
+        </div>
     </form>
 </div>
 <div class="word__table">
-    <dl>
+    <dl class="word__table__head">
         <dt>
             <span>単語</span>
         </dt>
@@ -44,7 +36,7 @@
     </dl>
     {% if words %}
     {% for word in words %}
-    <dl>
+    <dl class="word__table__row">
         <dt id="text-{{ word.id }}">
             <span>{{ word.text }}</span>
         </dt>
@@ -52,10 +44,10 @@
             <span>{{ word.comment }}</span>
         </dd>
         <dd id="btn-{{ word.id }}">
-            <button onclick="update('{{ word.id }}')">編集</button>
+            <button class="upd-btn" onclick="update('{{ word.id }}')">編集</button>
         </dd>
         <dd>
-            <button onclick="location.href='/delete_word/{{ word.book_id }}/{{ word.id }}'">削除</button>
+            <button class="dlt-btn" onclick="location.href='/delete_word/{{ word.book_id }}/{{ word.id }}'">削除</button>
         </dd>
     </dl>
     {% endfor %}

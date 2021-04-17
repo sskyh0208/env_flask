@@ -15,7 +15,7 @@ function update(wordId) {
     
     textElm.innerHTML ='<input id="update-' + textId + '" type="text" value="' + textElm.textContent.trim() + '">';
     commentElm.innerHTML ='<input id="update-' + commentId + '" type="text" value="' + commentElm.textContent.trim() + '">';
-    btnElm.innerHTML = '<button onclick="complete(\'' + wordId + '\')">完了</button>';
+    btnElm.innerHTML = '<button class="upd-btn" onclick="complete(\'' + wordId + '\')">完了</button>';
 };
 
 function complete(wordId) {
@@ -34,13 +34,13 @@ function complete(wordId) {
     if (text == updText && comment == updComment) {
         textElm.innerHTML = '<span>' + updText + '</span>';
         commentElm.innerHTML = '<span>' + updComment + '</span>';
-        btnElm.innerHTML = '<button onclick="update(\'' + wordId + '\')">編集</button>';
+        btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\')">編集</button>';
         return;
     };
 
     textElm.innerHTML = '<span>' + updText + '</span>';
     commentElm.innerHTML = '<span>' + updComment + '</span>';
-    btnElm.innerHTML = '<button onclick="update(\'' + wordId + '\')">編集</button>';
+    btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\')">編集</button>';
 
     data = {
         'id': wordId,

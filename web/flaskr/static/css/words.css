@@ -1,7 +1,56 @@
 .word__title {
     display: flex;
+    justify-content:flex-start;
+    background: #2a3644;
+    padding: 40px;
+}
+
+.word__title h1 {
+    color: #f26964;
+}
+
+.word__title p {
+    color: #fff;
+}
+
+.word__form {
+    background: #2a3644;
+    padding: 40px;
+}
+
+.word__form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.word__form [type="text"] {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 20px;
+    padding: 8px;
+    width: 80%;
+    outline: none;
+}
+
+.word__form__btn {
+    margin-top: 8px;
+    display: flex;
     justify-content: space-between;
 }
+
+.word__form__btn [type="submit"] {
+    background: #f26964;
+    color: #fff;
+    padding: 15px;
+    width: 120px;
+}
+
+.word__form__btn button {
+    background: grey;
+    color: #fff;
+    padding: 15px;
+}
+
 
 .score__table dl,
 .word__form dl,
@@ -22,4 +71,33 @@
 .word__table dl dd:nth-child(3),
 .word__table dl dd:nth-child(4) {
     width: 48px;
+}
+
+.word__table {
+    background: #2a3644;
+    padding: 40px;
+}
+
+.word__table__head span {
+    color: #f26964;
+}
+
+.word__table__row span {
+    color: #fff;
+}
+
+.word__table__row [type="text"] {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    outline: none;
+}
+
+.word__table__row .upd-btn {
+    background: #f26964;
+    color: #fff;
+}
+
+.word__table__row .dlt-btn {
+    background: grey;
+    color: #fff;
 }
