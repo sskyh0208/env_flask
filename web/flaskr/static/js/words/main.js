@@ -1,20 +1,20 @@
-var text = null;
-var comment = null;
+var rows = {}
 
 function update(wordId) {
     var textId = 'text-' + wordId;
     var commentId = 'comment-' + wordId;
     var btnId = 'btn-' + wordId;
-
+    
     var textElm = document.getElementById(textId);
     var commentElm = document.getElementById(commentId);
     var btnElm = document.getElementById(btnId);
-
-    text = textElm.textContent.trim()
-    comment = commentElm.textContent.trim()
     
-    textElm.innerHTML ='<input id="update-' + textId + '" type="text" value="' + textElm.textContent.trim() + '">';
-    commentElm.innerHTML ='<input id="update-' + commentId + '" type="text" value="' + commentElm.textContent.trim() + '">';
+    var text = textElm.textContent.trim();
+    var comment = commentElm.textContent.trim();
+    rows[wordId] = {"text": text, "comment": comment};
+    
+    textElm.innerHTML ='<input id="update-' + textId + '" type="text" value="' + text + '">';
+    commentElm.innerHTML ='<input id="update-' + commentId + '" type="text" value="' + comment + '">';
     btnElm.innerHTML = '<button class="upd-btn" onclick="complete(\'' + wordId + '\')">完了</button>';
 };
 
@@ -30,8 +30,7 @@ function complete(wordId) {
     var textElm = document.getElementById(textId);
     var commentElm = document.getElementById(commentId);
     var btnElm = document.getElementById(btnId);
-
-    if (text == updText && comment == updComment) {
+    if (rows[wordId]['text'] == updText && rows[wordId]['comment'] == updComment) {
         textElm.innerHTML = '<span>' + updText + '</span>';
         commentElm.innerHTML = '<span>' + updComment + '</span>';
         btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\')">編集</button>';
