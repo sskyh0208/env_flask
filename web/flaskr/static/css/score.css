@@ -1,8 +1,33 @@
+.score__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.score__table {
+    background: #2a3644;
+    padding: 40px;
+    border-radius: 5px;
+    border: 0;
+}
+
 .score__table dl {
     display: flex;
 }
 
 .score__table dl dt,
 .score__table dl dd {
-    width: 160px;
+    padding: 5px 15px;
+    width: 250px;
+}
+
+.score__table dl dd:nth-child(3) {
+    width: 48px;
+}
+
+.score__table__head {
+    color: #f26964;
+}
+
+.score__table__row {
+    color: #fff;
 }

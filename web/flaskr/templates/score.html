@@ -4,18 +4,20 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/score.css') }}">
-<div class="score__table">
-    <dl>
-        <dt>単語</dt>
-        <dd>意味</dd>
-        <dd>ミスタイプ</dd>
-    </dl>
-    {% for score in scores %}
-    <dl>
-        <dt>{{ score.Word.text }}</dt>
-        <dd>{{ score.Word.comment }}</dd>
-        <dd>{{ score.typemiss_count }}</dd>
-    </dl>
-    {% endfor %}
+<div class="score__wrapper">
+    <div class="score__table">
+        <dl class="score__table__head">
+            <dt>単語</dt>
+            <dd>意味</dd>
+            <dd>ミス</dd>
+        </dl>
+        {% for score in scores %}
+        <dl class="score__table__row">
+            <dt>{{ score.Word.text }}</dt>
+            <dd>{{ score.Word.comment }}</dd>
+            <dd>{{ score.typemiss_count }}</dd>
+        </dl>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

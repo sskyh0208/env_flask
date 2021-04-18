@@ -89,11 +89,10 @@
 }
 
 .word__form dl dt,
-.word__form dl dd,
-.word__table dl dt,
-.word__table dl dd {
+.word__form dl dd {
     width: 160px;
 }
+
 .word__table dl dt,
 .word__table dl dd {
     padding: 5 15px;

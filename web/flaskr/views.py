@@ -3,7 +3,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 from flaskr import db
 from flaskr.models import User, PasswordResetToken, Word, Book, Score
-from flaskr.forms import LoginForm, RegisterForm, ResetPasswordForm, WordForm, AccountForm, BookForm
+from flaskr.forms import LoginForm, RegisterForm, ResetPasswordForm, WordForm, BookForm
 from sqlalchemy import desc
 
 bp = Blueprint('app', __name__, url_prefix='')
@@ -73,19 +73,6 @@ def reset_password(token):
         return redirect(url_for('app.login'))
     return render_template('reset_password.html', form=form)
 
-# ユーザ情報
-@bp.route('/account', methods=['GET', 'POST'])
-@login_required
-def account():
-    form = AccountForm(request.form)
-    user = User.select_user_by_id(current_user.id)
-    if request.method == 'POST' and form.validate():
-        with db.session.begin(subtransactions=True):
-            user.update_description(form.description.data)
-        db.session.commit()
-        return redirect(url_for('app.index'))
-    return render_template('account.html', user=user, form=form)
-
 # ブック画面
 @bp.route('/books', methods=['GET', 'POST'])
 @login_required
@@ -104,7 +91,7 @@ def books():
     books = Book.select_by_user_id(current_user.id)
     return render_template('books.html', form=form, books=books)
 
-
+# 単語追加画面
 @bp.route('/words/<int:book_id>', methods=['GET', 'POST'])
 @login_required
 def words(book_id):

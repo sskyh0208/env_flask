@@ -48,35 +48,30 @@ class Game {
         
         var result = document.getElementById('result');
         var div = document.createElement('div');
+        div.classList.add('result__table')
         result.appendChild(div);
-
-        var t_dl = document.createElement('dl');
-        // 戻るリンク挿入
-        var t_dt = document.createElement('dt');
-        var back = document.createElement('a');
-        back.textContent = '戻る';
-        back.href = '/books';
-        t_dt.appendChild(back);
         
-        // 何も入れない
-        var t_dd1 = document.createElement('dd');
-        
+        var linkDiv = document.createElement('div');
+        linkDiv.classList.add('result__table__link');
         // もう一度リンク挿入
         var replay = document.createElement('a');
         replay.textContent = 'もう一度';
         replay.href = '/game/' + this.book_id;
-        var t_dd2 = document.createElement('dd');
+        linkDiv.appendChild(replay);
 
-        t_dd2.appendChild(replay);
-        t_dl.appendChild(t_dt);
-        t_dl.appendChild(t_dd1);
-        t_dl.appendChild(t_dd2);
-        div.appendChild(t_dl);
+        // 戻るリンク挿入
+        var back = document.createElement('a');
+        back.textContent = '戻る';
+        back.href = '/books';
+        linkDiv.appendChild(back);
+        
+        div.appendChild(linkDiv);
 
         if (this.failedCount> 0) {
             this.h1.textContent = 'よく間違えた単語';
             // ミスタイプ票のヘッダー作成。
             var h_dl = document.createElement('dl');
+            h_dl.classList.add('result__table__head');
             var h_dt = document.createElement('dt');
             h_dt.textContent = '単語';
             var h_dd1 = document.createElement('dd');
@@ -103,6 +98,7 @@ class Game {
             // ミスタイプ表の作成
             for (var i = 0; i < rowNum; i++) {
                 var dl = document.createElement('dl');
+                dl.classList.add('result__table__row');
                 // 単語挿入
                 var dt = document.createElement('dt');
                 dt.textContent = this.scoreWords[i].text;

@@ -32,17 +32,14 @@ class ResetPasswordForm(Form):
         if len(field.data) < 8:
             raise ValidationError('パスワードは8文字以上です')
 
-# 投稿画面
+
+# 単語登録画面
 class WordForm(Form):
     text = StringField('英単語', render_kw={'placeholder': 'do it.'}, validators=[DataRequired()])
     comment = StringField('意味', render_kw={'placeholder': '意味'}, validators=[DataRequired()])
     submit = SubmitField('登録')
 
-# アカウント
-class AccountForm(Form):
-    description = TextAreaField('自己紹介', render_kw={'placeholder': 'あなたについて'}, validators=[DataRequired()])
-    submit = SubmitField('更新')
-
+# ブック登録画面
 class BookForm(Form):
     name = StringField('ブック名', render_kw={'placeholder': 'your book name.'}, validators=[DataRequired()])
     description = StringField('説明', render_kw={'placeholder': '説明'}, validators=[DataRequired()])

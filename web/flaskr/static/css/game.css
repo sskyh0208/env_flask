@@ -24,17 +24,42 @@ span {
     justify-content: center;
 }
 
-#result a {
+.result__table {
+    background: #2a3644;
+    padding: 40px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.result__table__link {
+    display: flex;
+    justify-content: space-between;
+}
+
+.result__table__link a {
+    color: #f26964;
     text-decoration: none;
     font-weight: bold;
 }
 
-dl {
+.result__table dl {
     display: flex;
-    text-align: center;
 }
 
-dt,
-dd {
-    width: 160px;
+.result__table__head {
+    color: #f26964;
+}
+
+.result__table dl dt,
+.result__table dl dd {
+    padding: 5px 15px;
+    width: 250px;
+}
+
+.result__table dl dd:nth-child(3) {
+    width: 48px;
+}
+
+.result__table__row {
+    color: #fff;
 }

@@ -5,6 +5,11 @@ html,body{
     padding: 0;
 }
 
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
 
 .site-header {
     background: #2a3644;
@@ -32,11 +37,6 @@ html,body{
 
 .gnav__menu li{
     list-style: none;
-}
-
-.gnav__menu__item a {
-    color: #fff;
-    text-decoration: none;
 }
 
 .content {
