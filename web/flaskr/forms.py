@@ -36,7 +36,7 @@ class ResetPasswordForm(Form):
 class WordForm(Form):
     text = StringField('英単語', render_kw={'placeholder': 'do it.'}, validators=[DataRequired()])
     comment = StringField('意味', render_kw={'placeholder': '意味'}, validators=[DataRequired()])
-    submit = SubmitField('投稿')
+    submit = SubmitField('登録')
 
 # アカウント
 class AccountForm(Form):

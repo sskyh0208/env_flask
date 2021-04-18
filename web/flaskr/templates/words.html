@@ -5,6 +5,9 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/words.css') }}">
 <div class="word__wrapper">
+    <div class="word__delete__btn">
+        <button id="open">×</button>
+    </div>
     <div class="word__title">
         <div>
             <h1>{{ book.name }}</h1>
@@ -14,11 +17,14 @@
     <div class="word__form">
         <form method="POST">
             {{ form.csrf_token }}
-            {{ form.text() }}
-            {{ form.comment() }}
+            <div class="word__form__input">
+                {{ form.text() }}
+            </div>
+            <div class="word__form__input">
+                {{ form.comment() }}
+            </div>
             <div class="word__form__btn">
                 {{ form.submit() }}
-                <button onclick="location.href='/delete_book/{{ book.id }}'">ブックの削除</a>
             </div>
         </form>
     </div>
@@ -45,8 +51,16 @@
             </dd>
         </dl>
         {% endfor %}
-        </form>
         {% endif %}
     </div>
 </div>
+<div id="mask" class="hidden"></div>
+<section id="modal" class="hidden">
+    <p>{{ book.name }} を削除しますか？</p>
+    <div id="modal__btn">
+        <button id="delete" onclick="location.href='/delete_book/{{ book.id }}'">はい</button>
+        <button id="close">いいえ</button>
+    </div>
+</section>
+<script src="{{ url_for('static', filename='js/words/main.js') }}"></script>
 {% endblock %}
