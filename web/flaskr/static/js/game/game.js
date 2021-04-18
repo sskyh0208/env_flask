@@ -95,8 +95,13 @@ class Game {
                 return 0;
             });
             
+            // 10行までしか表示しない
+            var rowNum = this.scoreWords.length;
+            if (rowNum > 10) {
+                rowNum = 10;
+            }
             // ミスタイプ表の作成
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < rowNum; i++) {
                 var dl = document.createElement('dl');
                 // 単語挿入
                 var dt = document.createElement('dt');

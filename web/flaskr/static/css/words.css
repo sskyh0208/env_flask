@@ -87,8 +87,7 @@
 }
 
 .word__form dl dd:nth-child(3),
-.word__table dl dd:nth-child(3),
-.word__table dl dd:nth-child(4) {
+.word__table dl dd:nth-child(3) {
     width: 48px;
 }
 
@@ -104,28 +103,12 @@
     color: #fff;
 }
 
-.word__table__row [type="text"] {
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    outline: none;
-    padding: 5px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 0;
-    width: 100%;
-}
-
-.word__table__row .upd-btn,
 .word__table__row .dlt-btn {
     color: #fff;
     border-radius: 5px;
     padding: 5px 10px;
     border: 0;
     cursor: pointer;
-}
-
-.word__table__row .upd-btn {
-    background: #f26964;
 }
 
 .word__table__row .dlt-btn {

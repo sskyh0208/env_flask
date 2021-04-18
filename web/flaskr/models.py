@@ -163,22 +163,6 @@ class Word(db.Model):
     def delete(cls, id):
         cls.query.filter_by(id=id).delete()
 
-    def update(self, text, comment):
-        self.text = text
-        self.comment = comment
-        self.update_at = datetime.now()
-        db.session.add(self)
-        # ブックの更新日時も更新
-        book = Book.get_by_id(self.book_id)
-        book.update()
-    
-    def check(self, text, comment):
-        if not self.text == text:
-            return False
-        if not self.comment == comment:
-            return False
-        return True
-
 
 class Score(db.Model):
     __tablename__ = 'score'
@@ -203,4 +187,11 @@ class Score(db.Model):
     @classmethod
     def clear_score(cls, user_id):
         cls.query.filter_by(user_id=user_id).delete()
-    
+
+    @classmethod
+    def create_new_scores(cls, user_id, values: list):
+        scores = [{'user_id': user_id, 'word_id': val.get('id'), 'typemiss_count': val.get('count')} for val in values if val.get('count')]
+        if scores:
+            with db.session.begin(subtransactions=True):
+                db.session.execute(cls.__table__.insert(), scores)
+            db.session.commit()

@@ -123,42 +123,6 @@ def words(book_id):
     book = Book.get_by_id(book_id)
     return render_template('words.html', form=form, words=words, book=book)
 
-
-# # ブックの更新
-# @bp.route('/update_book/', methods=['POST'])
-# @login_required
-# def update():
-#     id = request.form.get('id')
-#     text = request.form.get('text').strip()
-#     comment = request.form.get('comment').strip()
-#     word = Word.get_by_id(id)
-#     if not word.check(text, comment):
-#         with db.session.begin(subtransactions=True):
-#             word.update(
-#                 text=text,
-#                 comment=comment
-#             )
-#         db.session.commit()
-#     return redirect(url_for('app.words'))
-
-# 単語の更新
-@bp.route('/update_word', methods=['POST'])
-@login_required
-def update():
-    id = request.form.get('id')
-    book_id = request.form.get('book_id')
-    text = request.form.get('text').strip()
-    comment = request.form.get('comment').strip()
-    word = Word.get_by_id(id)
-    if not word.check(text, comment):
-        with db.session.begin(subtransactions=True):
-            word.update(
-                text=text,
-                comment=comment
-            )
-        db.session.commit()
-    return redirect(url_for('app.words', book_id=book_id))
-
 # ブックの削除
 @bp.route('/delete_book/<int:book_id>')
 @login_required
@@ -173,7 +137,6 @@ def delete_book(book_id):
 @login_required
 def delete_word(book_id, word_id):
     with db.session.begin(subtransactions=True):
-        # ブックに紐づいている単語も削除する
         Word.delete(word_id)
     db.session.commit()
     return redirect(url_for('app.words', book_id=book_id))
@@ -191,21 +154,8 @@ def game(book_id):
 @bp.route('/game/score', methods=['POST'])
 @login_required
 def game_score():
-    for word in request.json:
-        # タイプミスしていないワードはスコアに登録しない
-        print(word.get('id'), word.get('text'), word.get('comment'), word.get('count'))
-        if not word.get('count'):
-            continue
+    Score.create_new_scores(current_user.id, request.json)
 
-        score = Score(
-            user_id=current_user.id,
-            word_id=word.get('id'),
-            typemiss_count=word.get('count')
-        )
-        
-        with db.session.begin(subtransactions=True):
-            score.create_new_score()
-        db.session.commit()
     return "h1"
 
 @bp.route('/score/<int:book_id>')

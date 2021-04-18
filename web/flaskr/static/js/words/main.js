@@ -33,13 +33,13 @@ function complete(wordId) {
     if (rows[wordId]['text'] == updText && rows[wordId]['comment'] == updComment) {
         textElm.innerHTML = '<span>' + updText + '</span>';
         commentElm.innerHTML = '<span>' + updComment + '</span>';
-        btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\')">編集</button>';
+        btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\');return false;">編集</button>';
         return;
     };
 
     textElm.innerHTML = '<span>' + updText + '</span>';
     commentElm.innerHTML = '<span>' + updComment + '</span>';
-    btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\')">編集</button>';
+    btnElm.innerHTML = '<button class="upd-btn" onclick="update(\'' + wordId + '\');return false;">編集</button>';
 
     data = {
         'id': wordId,
