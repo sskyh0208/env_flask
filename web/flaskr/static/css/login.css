@@ -3,6 +3,21 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+
+}
+
+#overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -99;
+    background: rgba(255, 255, 255, 0.65);
+}
+
+#bg-video {
+    position: fixed;
+    width: 100%;
+    z-index: -100;
 }
 
 .container {
@@ -13,7 +28,7 @@ body {
 }
 
 .login {
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
     height: 300px;
     width: 300px;
@@ -49,13 +64,13 @@ body {
     
 }
 
-
-
 .login input[type="submit"] {
     background: #f26964;
     color: #fff;
     padding: 15px;
     width: 225px;
+    margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .login a {
