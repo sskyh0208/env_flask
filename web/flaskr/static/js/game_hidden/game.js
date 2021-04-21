@@ -43,7 +43,6 @@ class Game {
         this.h1.textContent = '';
     };
 
-
     // スコア表示
     displayScore() {
         // ゲーム中のタイプ判定を削除
@@ -146,7 +145,7 @@ class Game {
         })
 
     }
-    
+
     // タイピング文字列の順番をシャッフル
     shuffleWords() {
         for (var i = (this.words.length - 1); 0 < i; i--) {
@@ -168,6 +167,7 @@ class Game {
         var splitWord = this.words[0].text.split('');
         for (var i = 0; i < splitWord.length; i++) {
             var span = this.generateSpan(splitWord[i]);
+            span.style.visibility = 'hidden';
             // pタグ子要素にする
             this.p.appendChild(span);
             // チェック用配列に入れる
@@ -189,25 +189,24 @@ class Game {
         // タイプ成功判定
         if(event.key === this.checkTexts[0].textContent) {
             this.checkTexts[0].className = 'add-blue';
-            this.successCount ++;
-            this.success.textContent = this.successCount;
+            this.checkTexts[0].style.visibility = 'visible';
             
             // タイプ文字列の削除
             this.checkTexts.shift();
             
             // タイプ文字列が存在しなくなったら、次のワード作成へ
             if(!this.checkTexts.length) {
-                //
+                this.success.textContent ++;
                 this.failed.textContent = 0;
 
                 // スコア辞書を配列に格納
                 if (this.typeWordScore['count']) {
                     this.scoreWords.push(this.typeWordScore);
-                }
+                };
 
                 // ワードの削除
                 this.words.shift();
-
+                
                 // 残りのワード数が0だったらゲーム終了
                 if (!this.words.length) {
                     this.gameOver = true;

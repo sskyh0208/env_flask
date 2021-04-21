@@ -108,7 +108,7 @@ def words(book_id):
         return redirect(url_for('app.words', book_id=book_id))
     words = Word.get_book_words(book_id)
     book = Book.get_by_id(book_id)
-    return render_template('words.html', form=form, words=words, book=book)
+    return render_template('words.html', form=form, words=words, book=book, words_count=len(words))
 
 # ブックの削除
 @bp.route('/delete_book/<int:book_id>')

@@ -146,7 +146,7 @@ class Game {
         })
 
     }
-    
+
     // タイピング文字列の順番をシャッフル
     shuffleWords() {
         for (var i = (this.words.length - 1); 0 < i; i--) {
@@ -189,21 +189,18 @@ class Game {
         // タイプ成功判定
         if(event.key === this.checkTexts[0].textContent) {
             this.checkTexts[0].className = 'add-blue';
-            this.successCount ++;
-            this.success.textContent = this.successCount;
             
             // タイプ文字列の削除
             this.checkTexts.shift();
             
             // タイプ文字列が存在しなくなったら、次のワード作成へ
             if(!this.checkTexts.length) {
-                //
-                this.failed.textContent = 0;
+                // 成功回数をカウント
+                this.successCount ++;
+                this.success.textContent = this.successCount;
 
                 // スコア辞書を配列に格納
-                if (this.typeWordScore['count']) {
-                    this.scoreWords.push(this.typeWordScore);
-                }
+                this.scoreWords.push(this.typeWordScore);
 
                 // ワードの削除
                 this.words.shift();
@@ -220,9 +217,24 @@ class Game {
             }
         // タイプミス判定
         } else {
+            this.checkTexts = [];
             this.typeWordScore['count'] ++;
             this.failedCount ++;
             this.failed.textContent ++;
+            // スコア辞書を配列に格納
+            this.scoreWords.push(this.typeWordScore);
+
+            // ワードの削除
+            this.words.shift();
+
+            // 残りのワード数が0だったらゲーム終了
+            if (!this.words.length) {
+                this.endGame();
+
+            // 残りのワード数が0じゃなったら続行
+            } else {
+                this.createText();
+            }
         }
     }
 }

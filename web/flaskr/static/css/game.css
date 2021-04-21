@@ -1,6 +1,7 @@
 #comment {
     font-weight: bold;
     text-align: center;
+    color: #2a3644;
 }
 #text {
     font-size: 4em;
@@ -27,7 +28,7 @@ span {
 .result__table {
     background: #2a3644;
     padding: 40px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 0;
 }
 

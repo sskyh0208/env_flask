@@ -3,6 +3,15 @@
     justify-content: center;
 }
 
+.score__table__title {
+    text-align: center;
+}
+
+.score__table__title h1 {
+    color: #f26964;
+    margin-top: 0;
+}
+
 .score__table {
     background: #2a3644;
     padding: 40px;
