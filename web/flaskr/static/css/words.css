@@ -10,7 +10,6 @@
 .word__delete__btn{
     position: relative;
     width: 100%;
-    z
 }
 
 .word__delete__btn button{
@@ -65,9 +64,11 @@
     border: 0;
     margin-bottom: 8px;
 }
+
 .word__form [type="text"]::placeholder {
     padding: 16px;
 }
+
 .word__form__btn {
     display: flex;
     justify-content: flex-end;

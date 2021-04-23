@@ -103,6 +103,7 @@ class Book(db.Model):
     name = db.Column(db.String(255), index=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(255))
+    typing_mode = db.Column(db.Integer, default=0)
     create_at = db.Column(db.DateTime, default=datetime.now())
     update_at = db.Column(db.DateTime, default=datetime.now())
 
@@ -129,6 +130,10 @@ class Book(db.Model):
 
     def update(self):
         self.update_at = datetime.now()
+        db.session.add(self)
+
+    def change_typing_mode(self, mode_num):
+        self.typing_mode = mode_num
         db.session.add(self)
 
 

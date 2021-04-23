@@ -4,30 +4,25 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/books.css') }}">
+<h1 class="title">あなたの単語ブック</h1>
 <div class="card__wrapper">
     <div class="card">
-        <form method="POST">
-            {{ form.csrf_token }}
-            <div class="card__header">
-                <ul class="card__nav">
-                    <li class="card__nav__item">
-                        {{ form.submit() }}
-                    </li>
-                </ul>
-            </div>
-            <div class="card__body">
-                <h4 class="card__title">{{ form.name() }}</h4>
-                <p class="card__text">{{ form.description() }}</p>
-            </div>
-            <div class="card__footer">
-                <small class="text__muted">新規作成</small>
-            </div>
-        </form>
+        <div class="card__form">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ form.name() }}
+                {{ form.description() }}
+                {{ form.submit() }}
+            </form>
+        </div>
     </div>
     {% if books %}
     {% for book in books %}
     <div class="card">
         <div class="card__header">
+            <div class="card__option__btn">
+                <i class="fa fa-cog" onclick="changeOnclickFunction('{{ book.id }}')"></i>
+            </div>
             <ul class="card__nav">
                 <li class="card__nav__item">
                     <a href="/game/{{ book.id }}" class="nav-link active">タイピング</a>
@@ -51,4 +46,18 @@
     {% endfor %}
     {% endif %}
 </div>
+<div id="mask" class="hidden"></div>
+<section id="modal" class="hidden">
+    <div id="modal__body">
+        <p>タイピングモードを変更しますか？</p>
+        <div id="modal__btn">
+            <button id="mode_eazy">Eazy</button>
+            <button id="mode_normal">Normal</button>
+            <button id="mode_hard">Hard</button>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/books/main.js') }}"></script>
+<script src="https://kit.fontawesome.com/a2060b8d07.js" crossorigin="anonymous"></script>
 {% endblock %}

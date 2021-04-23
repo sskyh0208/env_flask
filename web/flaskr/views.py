@@ -132,17 +132,18 @@ def delete_word(book_id, word_id):
 @bp.route('/game/<int:book_id>')
 @login_required
 def game(book_id):
+    # タイピングモード切替のためにbook情報呼び出し
+    book = Book.get_by_id(book_id)
     words = Word.get_book_words(book_id)
+    # javascriptで処理するタイピングワードを作成する。
     type_words = [{'id': word.id, 'text': word.text, 'comment': word.comment, 'book_id': word.book_id} for word in words]
-    
-    return render_template('game.html', words=type_words)
+    return render_template('game.html', words=type_words, mode=book.typing_mode)
 
 
 @bp.route('/game/score', methods=['POST'])
 @login_required
 def game_score():
     Score.create_new_scores(current_user.id, request.json)
-
     return "h1"
 
 @bp.route('/score/<int:book_id>')
@@ -159,3 +160,22 @@ def score(book_id):
     )
 
     return render_template('score.html', scores=scores)
+
+@bp.route('/change_typing_mode/<int:book_id>/<int:mode_num>')
+@login_required
+def change_typing_mode(book_id, mode_num):
+    scores = [{'user_id': user_id, 'word_id': val.get('id'), 'typemiss_count': val.get('count')} for val in values if val.get('count')]
+    book = Book.get_by_id(book_id)
+    with db.session.begin(subtransactions=True):
+        book.change_typing_mode(int(mode_num))
+    db.session.commit()
+    return redirect(url_for('app.books'))
+
+@bp.route('/change_mode', methods=['POST'])
+@login_required
+def change_mode():
+    book = Book.get_by_id(request.json.get('book_id'))
+    with db.session.begin(subtransactions=True):
+        book.change_typing_mode(int(request.json.get('mode_num')))
+    db.session.commit()
+    return redirect(url_for('app.books'))
