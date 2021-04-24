@@ -1,4 +1,15 @@
-var game = new Game(words);
+var game = null;
+
+if (mode == 0) {
+    // Eazyモード
+    game = new Game(words);
+} else if (mode == 1) {
+    // Normalモード
+    game = new NormalGame(words);
+} else {
+    // Hardモード
+    game = new HardGame(words);
+}
 game.startGame();
 
 document.addEventListener('keydown', function(e){
@@ -6,7 +17,7 @@ document.addEventListener('keydown', function(e){
         game.typed(e);
         if (game.gameOver) {
             document.removeEventListener('keydown', function(e){});
-            // 最後の文字を
+            // 最後の文字を表示させてから
             setTimeout(() => {
                 game.endGame();
             }, 300);

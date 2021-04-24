@@ -19,16 +19,9 @@
 <script>
     // ワードの取得、外部読み込みのjs内で受けとった変数を使えるようにこの場所で宣言。
     var words = {{ words | tojson }};
+    var mode = {{ mode }};
 </script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-{% if mode| int == 0 %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/game/game.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/game/main.js') }}"></script>
-{% elif mode| int == 1 %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/game_hidden/game.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/game_hidden/main.js') }}"></script>
-{% else %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/game_hard/game.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/game_hard/main.js') }}"></script>
-{% endif %}
 {% endblock %}
