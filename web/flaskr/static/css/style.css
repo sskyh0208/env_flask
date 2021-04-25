@@ -106,3 +106,58 @@ a {
     background: #ff4b4b;
     transition: 0.5s;
 }
+
+.close-btn {
+    background: none;
+    color: grey;
+    font-size: 25px;
+    cursor: pointer;
+    line-height: 0;
+    transition: 0.5s;
+}
+
+.close-btn:hover {
+    color: rgb(100, 100, 100);
+    transition: 0.5s;
+}
+
+.delete-btn {
+    background: none;
+    color: grey;
+    font-size: 25px;
+    cursor: pointer;
+    line-height: 0;
+    transition: 0.5s;
+}
+
+.delete-btn:hover {
+    color: rgb(100, 100, 100);
+    transition: 0.5s;
+}
+
+.back-btn {
+    background: none;
+    color: #f26964;
+    font-size: 25px;
+    cursor: pointer;
+    line-height: 0;
+    transition: 0.5s;
+}
+
+.back-btn:hover {
+    color: #ff4b4b;
+    transition: 0.5s;
+}
+
+.option-btn {
+    color: grey;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.5s;
+}
+
+.option-btn:hover {
+    color: rgb(100, 100, 100);
+    transition: 0.5s;
+}

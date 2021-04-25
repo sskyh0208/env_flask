@@ -22,14 +22,8 @@
 
 .card__option__btn i{
     position: absolute;
-    color: grey;
-    right: 0;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 0;
-    padding: 10px 8px 10px 15px;
+    top: 10px;
+    right: 10px;
 }
 
 .card__header {
@@ -101,7 +95,7 @@
 }
 
 
-.card__body h4 {
+.card__body h3 {
     color: #fff;
     margin-top: 0;
 }
@@ -116,6 +110,17 @@
     color: #fff;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.modal__close__btn{
+    position: relative;
+    width: 100%;
+}
+
+.modal__close__btn a{
+    position: absolute;
+    top: 16px;
+    right: 16px;
 }
 
 #mask {

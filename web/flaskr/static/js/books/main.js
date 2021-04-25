@@ -2,11 +2,19 @@
 {
   const modal = document.getElementById('modal');
   const mask = document.getElementById('mask');
+  const close = document.getElementById('close');
 
   mask.addEventListener('click', function () {
     modal.classList.add('hidden');
     mask.classList.add('hidden');
   });
+
+  close.addEventListener('click', function () {
+    modal.classList.add('hidden');
+    mask.classList.add('hidden');
+  });
+
+
 };
 
 function changeMode(book_id, mode_num) {

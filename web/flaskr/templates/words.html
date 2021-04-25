@@ -5,62 +5,68 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/words.css') }}">
 <div class="word__wrapper">
-    <div class="word__delete__btn">
-        <button id="open">×</button>
-    </div>
-    <div class="word__title">
-        <div>
-            <h1>{{ book.name }}</h1>
-            <p>{{ book.description }}</p>
-            <p>{{ words_count }}　個の単語を登録中。</p>
+    <div class="word__content">
+        <div class="word__btn">
+            <a id="back" class="back-btn" href="/books"><i class="fas fa-arrow-left"></i></a>
+            <a id="open" class="delete-btn"><i class="fas fa-trash-alt"></i></a>
         </div>
-    </div>
-    <div class="word__form">
-        <form method="POST">
-            {{ form.csrf_token }}
-            <div class="word__form__input">
-                {{ form.text() }}
+        <div class="word__title">
+            <div>
+                <h1>{{ book.name }}</h1>
+                <p>{{ book.description }}</p>
+                <p>{{ words_count }}　個の単語を登録中。</p>
             </div>
-            <div class="word__form__input">
-                {{ form.comment() }}
-            </div>
-            <div class="word__form__btn">
-                {{ form.submit(class="m-btn app-btn") }}
-            </div>
-        </form>
-    </div>
-    <div class="word__table">
-        <dl class="word__table__head">
-            <dt>
-                <span>単語</span>
-            </dt>
-            <dd>
-                <span>意味</span>
-            </dd>
-        </dl>
-        {% if words %}
-        {% for word in words %}
-        <dl class="word__table__row">
-            <dt>
-                <span>{{ word.text }}</span>
-            </dt>
-            <dd>
-                <span>{{ word.comment }}</span>
-            </dd>
-            <dd>
-                <a class="s-btn deny-btn" href='/delete_word/{{ word.book_id }}/{{ word.id }}'>削除</a>
-            </dd>
-        </dl>
-        {% endfor %}
-        {% endif %}
+        </div>
+        <div class="word__form">
+            <form method="POST">
+                {{ form.csrf_token }}
+                <div class="word__form__input">
+                    {{ form.text() }}
+                </div>
+                <div class="word__form__input">
+                    {{ form.comment() }}
+                </div>
+                <div class="word__form__btn">
+                    {{ form.submit(class="m-btn app-btn") }}
+                </div>
+            </form>
+        </div>
+        <div class="word__table">
+            <dl class="word__table__head">
+                <dt>
+                    <span>単語</span>
+                </dt>
+                <dd>
+                    <span>意味</span>
+                </dd>
+                <dd>
+                </dd>
+            </dl>
+            {% if words %}
+            {% for word in words %}
+            <dl class="word__table__row">
+                <dt>
+                    <span>{{ word.text }}</span>
+                </dt>
+                <dd>
+                    <span>{{ word.comment }}</span>
+                </dd>
+                <dd>
+                    <a class="s-btn deny-btn" href='/delete_word/{{ word.book_id }}/{{ word.id }}'>削除</a>
+                </dd>
+            </dl>
+            {% endfor %}
+            {% endif %}
+        </div>
     </div>
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
+    <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
     <p>{{ book.name }} を削除しますか？</p>
     <div id="modal__btn">
         <a id="delete" class="m-btn app-btn" href='/delete_book/{{ book.id }}'>はい</a>
-        <a id="close" class="m-btn deny-btn">いいえ</a>
+        <a id="no" class="m-btn deny-btn">いいえ</a>
     </div>
 </section>
 <script src="{{ url_for('static', filename='js/words/main.js') }}"></script>

@@ -23,7 +23,7 @@
     <div class="card">
         <div class="card__header">
             <div class="card__option__btn">
-                <i class="fa fa-cog" onclick="changeOnclickFunction('{{ book.id }}')"></i>
+                <a class="option-btn" onclick="changeOnclickFunction('{{ book.id }}')"><i class="fa fa-cog"></i></a>
             </div>
             <ul class="card__nav">
                 <li class="card__nav__item">
@@ -38,7 +38,7 @@
             </ul>
         </div>
         <div class="card__body">
-            <h4 class="card__title">{{ book.name }}</h4>
+            <h3 class="card__title">{{ book.name }}</h4>
             <p class="card__text">{{ book.description }}</p>
         </div>
         <div class="card__footer">
@@ -50,6 +50,9 @@
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
+    <div class="modal__close__btn">
+        <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
+    </div>
     <div id="modal__body">
         <p>タイピングモードを変更しますか？</p>
         <table>
