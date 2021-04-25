@@ -4,17 +4,25 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
-<h1 id=comment></h1>
-<p id="text"></p>
-<div id="score">
-    <div>
-        <span>正解: </span><span id="success"></p>
+<div class="title">
+    <h1>
+        {{ book_name }}
+    </h1>
+<div class="game__wrapper">
+    <div class="game__display">
+        <h1 id=comment></h1>
+        <p id="text"></p>
+        <div id="score">
+            <div>
+                <span>正解: </span><span id="success"></p>
+            </div>
+            <div>
+                <span>失敗: </span><span id="failed"></p>
+            </div>
+        </div>
+        <div id="result">
+        </div>
     </div>
-    <div>
-        <span>失敗: </span><span id="failed"></p>
-    </div>
-</div>
-<div id="result">
 </div>
 <script>
     // ワードの取得、外部読み込みのjs内で受けとった変数を使えるようにこの場所で宣言。

@@ -137,7 +137,7 @@ def game(book_id):
     words = Word.get_book_words(book_id)
     # javascriptで処理するタイピングワードを作成する。
     type_words = [{'id': word.id, 'text': word.text, 'comment': word.comment, 'book_id': word.book_id} for word in words]
-    return render_template('game.html', words=type_words, mode=book.typing_mode)
+    return render_template('game.html', words=type_words, mode=book.typing_mode, book_name=book.name)
 
 
 @bp.route('/game/score', methods=['POST'])

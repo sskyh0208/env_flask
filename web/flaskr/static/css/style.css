@@ -12,7 +12,7 @@ a {
 }
 
 
-.site-header {
+.header {
     background: #2a3644;
     color: #fff;
     display: flex;
@@ -29,21 +29,80 @@ a {
     width: auto;
 }
 
-.gnav__menu {
+.nav__menu {
     display: flex;
 }
 
-.gnav__menu__item {
+.nav__menu__item {
     margin-right: 40px;
 }
 
-.gnav__menu li{
+.nav__menu li{
     list-style: none;
 }
+
+
 
 .content {
     line-height: 1.6;
     margin: 0 auto;
     padding-top: 160px;
-    width: 800px;
+    width: 660px;
+}
+
+.title h1 {
+    color: #2a3644;
+    text-align: center;
+}
+
+.s-btn {
+    text-align: center;
+    font-size: 1em;
+    width: 80px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 0;
+    cursor: pointer;
+}
+
+.m-btn {
+    text-align: center;
+    padding: 15px;
+    font-size: 16px;
+    width: 120px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.l-btn {
+    text-align: center;
+    width: 160px;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+.app-btn {
+    background: #f26964;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.deny-btn {
+    background: grey;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.deny-btn:hover {
+    background: rgb(100, 100, 100);
+    transition: 0.5s;
+}
+
+.app-btn:hover {
+    background: #ff4b4b;
+    transition: 0.5s;
 }

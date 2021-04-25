@@ -1,21 +1,15 @@
 .score__wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-}
-
-.score__table__title {
-    text-align: center;
-}
-
-.score__table__title h1 {
-    color: #f26964;
-    margin-top: 0;
+    width: 100%;
 }
 
 .score__table {
     background: #2a3644;
-    padding: 40px;
+    padding: 20px 40px;
     border-radius: 10px;
+    box-shadow: 0 2px 5px rgb(87, 87, 87);
     border: 0;
 }
 

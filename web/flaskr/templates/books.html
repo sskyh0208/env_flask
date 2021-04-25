@@ -4,7 +4,9 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/books.css') }}">
-<h1 class="title">あなたの単語ブック</h1>
+<div class="title">
+    <h1>あなたの単語ブック</h1>
+</div>
 <div class="card__wrapper">
     <div class="card">
         <div class="card__form">
@@ -50,14 +52,22 @@
 <section id="modal" class="hidden">
     <div id="modal__body">
         <p>タイピングモードを変更しますか？</p>
-        <div id="modal__btn">
-            <button id="mode_eazy">Eazy</button>
-            <button id="mode_normal">Normal</button>
-            <button id="mode_hard">Hard</button>
-        </div>
+        <table>
+            <tr>
+                <th><a id="mode_eazy" class="s-btn app-btn" href="#">Eazy <i class="fas fa-chevron-circle-right"></i></a></th>
+                <td>常に文字が表示されます。</td>
+            </tr>
+            <tr>
+                <th><a id="mode_normal" class="s-btn app-btn" href="#">Normal <i class="fas fa-chevron-circle-right"></i></a></th>
+                <td>タイプ成功時に文字が表示されます。</td>
+            </tr>
+            <tr>
+                <th><a id="mode_hard" class="s-btn app-btn" href="#">Hard <i class="fas fa-chevron-circle-right"></i></a></th>
+                <td>タイプ成功時に文字が表示され<br>失敗した場合、次の単語に移動します。</td>
+            </tr>
+        </table>
     </div>
 </section>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{{ url_for('static', filename='js/books/main.js') }}"></script>
-<script src="https://kit.fontawesome.com/a2060b8d07.js" crossorigin="anonymous"></script>
 {% endblock %}

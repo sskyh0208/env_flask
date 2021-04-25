@@ -4,6 +4,7 @@
     background: #2a3644;
     border-radius: 10px;
     border: 0;
+    width: 100%;
     padding: 40px;
 }
 
@@ -62,27 +63,13 @@
     outline: none;
     border-radius: 5px;
     border: 0;
+    text-indent: 1em;
     margin-bottom: 8px;
-}
-
-.word__form [type="text"]::placeholder {
-    padding: 16px;
 }
 
 .word__form__btn {
     display: flex;
     justify-content: flex-end;
-}
-
-.word__form__btn [type="submit"] {
-    background: #f26964;
-    width: 120px;
-    font-size: 24px;
-    color: #fff;
-    padding: 5px 15px;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
 }
 
 .word__form dl,
@@ -99,14 +86,13 @@
 .word__table dl dd {
     padding: 5 15px;
     height: 50px;
-    width: 250px;
+    width: 45%;
     display: flex;
     align-items: center;
 }
 
-.word__form dl dd:nth-child(3),
 .word__table dl dd:nth-child(3) {
-    width: 48px;
+    width: 10%;
 }
 
 .word__table {
@@ -175,14 +161,6 @@
     justify-content: space-between;
 }
 
-#delete,
-#close {
-    background: #f26964;
-    border-radius: 5px;
-    border: 0;
-    width: 120px;
-    color: #fff;
-    font-size: 24px;
-    padding: 5px 15px;
-    cursor: pointer;
+#modal__btn a {
+    width: 100px;
 }

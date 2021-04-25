@@ -25,7 +25,7 @@
                 {{ form.comment() }}
             </div>
             <div class="word__form__btn">
-                {{ form.submit() }}
+                {{ form.submit(class="m-btn app-btn") }}
             </div>
         </form>
     </div>
@@ -48,7 +48,7 @@
                 <span>{{ word.comment }}</span>
             </dd>
             <dd>
-                <button type="button" class="dlt-btn" onclick="location.href='/delete_word/{{ word.book_id }}/{{ word.id }}'">削除</button>
+                <a class="s-btn deny-btn" href='/delete_word/{{ word.book_id }}/{{ word.id }}'>削除</a>
             </dd>
         </dl>
         {% endfor %}
@@ -59,8 +59,8 @@
 <section id="modal" class="hidden">
     <p>{{ book.name }} を削除しますか？</p>
     <div id="modal__btn">
-        <button id="delete" onclick="location.href='/delete_book/{{ book.id }}'">はい</button>
-        <button id="close">いいえ</button>
+        <a id="delete" class="m-btn app-btn" href='/delete_book/{{ book.id }}'>はい</a>
+        <a id="close" class="m-btn deny-btn">いいえ</a>
     </div>
 </section>
 <script src="{{ url_for('static', filename='js/words/main.js') }}"></script>

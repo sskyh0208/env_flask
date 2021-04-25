@@ -48,6 +48,7 @@ class Game {
     // タイピング文字を消す
     deleteTypingContent() {
         this.p.textContent = '';
+        this.p.remove();
         this.h1.textContent = '';
     };
 
@@ -64,6 +65,7 @@ class Game {
         div.classList.add('result__table')
         result.appendChild(div);
         
+        
         if (this.totalTypeMissCount > 0) {
             this.h1.textContent = 'よく間違えた単語';
             // ミスタイプ表のヘッダー作成。
@@ -78,21 +80,22 @@ class Game {
             if (rowNum > 10) {
                 rowNum = 10;
             }
-
+            
             // ミスタイプ表の作成
             for (var i = 0; i < rowNum; i++) {
                 var row = this.generateMissTypeTableRow(i);
                 div.appendChild(row);
             }
             
-            var links = this.generateMissTypeTableLinks();
-            div.appendChild(links);
             
         } else {
             this.h1.textContent = 'パーフェクト！';
         }
+        
+        var links = this.generateMissTypeTableLinks();
+        result.appendChild(links);
     }
-
+    
     // スコアを降順にソート
     scoreSortDesc() {
         this.scoreWords.sort(function(a, b) {
@@ -141,31 +144,34 @@ class Game {
 
     // 最後のスコアテーブルのリンク部を作成
     generateMissTypeTableLinks() {
-        var dl = document.createElement('dl');
-        dl.classList.add('result__table__row');
+        var div = document.createElement('div');
+        div.classList.add('result__links');
         // もう一度りんく挿入
         var replay = document.createElement('a');
+        replay.id = 'replay-btn';
+        replay.classList.add('m-btn');
+        replay.classList.add('app-btn');
         replay.textContent = 'もう一度';
         replay.href = '/game/' + this.book_id;
-        var dt = document.createElement('dt');
-        dt.appendChild(replay)
+        div.appendChild(replay)
+        
         // スコアリンク挿入
         var scores = document.createElement('a');
+        scores.id = 'scores-btn';
+        scores.classList.add('m-btn');
+        scores.classList.add('app-btn');
         scores.textContent = 'スコア';
         scores.href = '/score/' + this.book_id;
-        var dd1 = document.createElement('dd');
-        dd1.appendChild(scores)
+        div.appendChild(scores)
         // 戻るリンク挿入
         var back = document.createElement('a');
-        back.textContent = '戻る';
+        back.id = 'back-btn';
+        back.classList.add('m-btn');
+        back.classList.add('app-btn');
+        back.textContent = 'もどる';
         back.href = '/books';
-        var dd2 = document.createElement('dd');
-        dd2.appendChild(back)
-
-        dl.appendChild(dt);
-        dl.appendChild(dd1);
-        dl.appendChild(dd2);
-        return dl
+        div.appendChild(back)
+        return div
     }
 
     // ゲームスコア登録
