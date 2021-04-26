@@ -158,8 +158,9 @@ def score(book_id):
         .order_by(desc('typemiss_count'))
         .all()
     )
+    book = Book.get_by_id(book_id)
 
-    return render_template('score.html', scores=scores)
+    return render_template('score.html', scores=scores, book=book)
 
 @bp.route('/change_typing_mode/<int:book_id>/<int:mode_num>')
 @login_required

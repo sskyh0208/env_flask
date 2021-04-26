@@ -11,6 +11,18 @@
     width: 100%;
 }
 
+.score__title {
+    display: flex;
+    justify-content:flex-start;
+}
+
+.score__title h1 {
+    color: #f26964;
+}
+
+.score__title p {
+    color: #fff;
+}
 
 .score__table {
     background: #2a3644;
