@@ -17,8 +17,8 @@
 
 };
 
-function changeMode(book_id, mode_num) {
-    var data = {"book_id": book_id, "mode_num": mode_num};
+function changeMode(book_id, typing_mode) {
+    var data = {"book_id": book_id, "typing_mode": typing_mode};
     $.ajax({
         url: '/change_mode',
         type: 'POST',

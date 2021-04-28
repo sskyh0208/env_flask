@@ -161,8 +161,6 @@ class Word(db.Model):
 
     def create_new_word(self):
         db.session.add(self)
-        book = Book.get_by_id(self.book_id)
-        book.update()
 
     @classmethod
     def delete(cls, id):
@@ -192,11 +190,3 @@ class Score(db.Model):
     @classmethod
     def clear_score(cls, user_id):
         cls.query.filter_by(user_id=user_id).delete()
-
-    @classmethod
-    def create_new_scores(cls, user_id, values: list):
-        scores = [{'user_id': user_id, 'word_id': val.get('id'), 'typemiss_count': val.get('count')} for val in values if val.get('count')]
-        if scores:
-            with db.session.begin(subtransactions=True):
-                db.session.execute(cls.__table__.insert(), scores)
-            db.session.commit()

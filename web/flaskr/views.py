@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, render_template, redirect, url_for ,request, flash
+from flask import Blueprint, abort, render_template, redirect, url_for ,request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 
 from flaskr import db
@@ -102,8 +102,10 @@ def words(book_id):
             text=form.text.data,
             comment=form.comment.data
         )
+        book = Book.get_by_id(book_id)
         with db.session.begin(subtransactions=True):
             word.create_new_word()
+            book.update()
         db.session.commit()
         return redirect(url_for('app.words', book_id=book_id))
     words = Word.get_book_words(book_id)
@@ -143,8 +145,12 @@ def game(book_id):
 @bp.route('/game/score', methods=['POST'])
 @login_required
 def game_score():
-    Score.create_new_scores(current_user.id, request.json)
-    return "h1"
+    scores = [{'user_id': current_user.id, 'word_id': val.get('id'), 'typemiss_count': val.get('count')} for val in request.json if val.get('count')]
+    if scores:
+        with db.session.begin(subtransactions=True):
+            db.session.execute(Score.__table__.insert(), scores)
+        db.session.commit()
+    return jsonify({'result': 'success'})
 
 @bp.route('/score/<int:book_id>')
 @login_required
@@ -162,21 +168,11 @@ def score(book_id):
 
     return render_template('score.html', scores=scores, book=book)
 
-@bp.route('/change_typing_mode/<int:book_id>/<int:mode_num>')
-@login_required
-def change_typing_mode(book_id, mode_num):
-    scores = [{'user_id': user_id, 'word_id': val.get('id'), 'typemiss_count': val.get('count')} for val in values if val.get('count')]
-    book = Book.get_by_id(book_id)
-    with db.session.begin(subtransactions=True):
-        book.change_typing_mode(int(mode_num))
-    db.session.commit()
-    return redirect(url_for('app.books'))
-
 @bp.route('/change_mode', methods=['POST'])
 @login_required
 def change_mode():
     book = Book.get_by_id(request.json.get('book_id'))
     with db.session.begin(subtransactions=True):
-        book.change_typing_mode(int(request.json.get('mode_num')))
+        book.change_typing_mode(int(request.json.get('typing_mode')))
     db.session.commit()
     return redirect(url_for('app.books'))

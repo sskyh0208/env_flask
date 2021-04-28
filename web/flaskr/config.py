@@ -12,7 +12,7 @@ class BaseConfig(object):
     SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}/{DB_SCHEMA}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-class TestConfig(object):
+class DevConfig(object):
     DEBUG = True
     TESTING = False
     SECRET_KEY = 'mysite'
