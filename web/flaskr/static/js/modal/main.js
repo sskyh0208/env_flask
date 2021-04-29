@@ -7,6 +7,7 @@
   const no = document.getElementById('no');
 
   open.addEventListener('click', function () {
+    console.log('test');
     modal.classList.remove('hidden');
     mask.classList.remove('hidden');
   });

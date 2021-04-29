@@ -118,9 +118,18 @@ def words(book_id):
 def delete_book(book_id):
     with db.session.begin(subtransactions=True):
         Book.delete(book_id)
-        Score.delete_book_scores(current_user.id,book_id)
+        Score.delete_book_scores(current_user.id, book_id)
     db.session.commit()
     return redirect(url_for('app.books'))
+
+# スコアの削除
+@bp.route('/delete_score/<int:book_id>')
+@login_required
+def delete_score(book_id):
+    with db.session.begin(subtransactions=True):
+        Score.delete_book_scores(current_user.id, book_id)
+    db.session.commit()
+    return redirect(url_for('app.score'))
 
 # 単語の削除
 @bp.route('/delete_word/<int:book_id>/<int:word_id>')

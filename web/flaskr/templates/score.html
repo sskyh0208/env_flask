@@ -11,6 +11,7 @@
     <div class="score__table">
         <div class="score__btn">
             <a id="back" class="back-btn" href="/books"><i class="fas fa-arrow-left"></i></a>
+            <a id="open" class="delete-btn"><i class="fas fa-trash-alt"></i></a>
         </div>
         <div class="score__title">
             <div>
@@ -32,4 +33,19 @@
         {% endfor %}
     </div>
 </div>
+<div id="mask" class="hidden"></div>
+<section id="modal" class="hidden">
+    {% if scores %}
+    <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
+    <p>{{ book.name }} のスコアを削除しますか？</p>
+    <div id="modal__btn">
+        <a id="delete" class="m-btn app-btn" href='/delete_score/{{ book.id }}'>はい</a>
+        <a id="no" class="m-btn deny-btn">いいえ</a>
+    </div>
+    {% else %}
+    <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
+    <p>現在、スコアが存在しません。</p>
+    {% endif %}
+</section>
+<script src="{{ url_for('static', filename='js/modal/main.js') }}"></script>
 {% endblock %}
