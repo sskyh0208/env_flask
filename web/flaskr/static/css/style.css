@@ -21,7 +21,7 @@ a {
     padding: 20px 20px;
     position: fixed;
     width: 100%;
-    z-index: 100;
+    z-index: 10;
 }
 
 .site-logo img{
@@ -161,3 +161,5 @@ a {
     color: rgb(100, 100, 100);
     transition: 0.5s;
 }
+
+/* login */

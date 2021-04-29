@@ -5,7 +5,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 1;
+    z-index: 20;
 }
 
 #modal {
@@ -14,7 +14,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0 auto;
-    z-index: 2;
+    z-index: 21;
     transition: 0.4s;
 }
 
@@ -67,4 +67,92 @@
 #modal__body td {
     text-align: left;
     height: 50px;
+}
+
+/* login */
+#login-mask {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+}
+
+#login-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    z-index: 21;
+    transition: 0.4s;
+    background: #2a3644;
+    color: #fff;
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#login-modal__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px 20px 40px;
+}
+
+#login-mask.hidden {
+    display: none;
+}
+
+#login-modal.hidden {
+    transform: translate(-50%, -800px);
+}
+
+#login-modal #login-close {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+#login-modal__body form{
+    display: flex;
+    flex-direction: column;
+}
+
+#login-modal__body input {
+    border-radius: 5px;
+    border: 0;
+    font-size: 16px;
+    margin: 2.5px;
+}
+
+#login-modal__body input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px rgba(42, 54, 68, 0.2) inset;
+}
+
+#login-modal__body input[type="text"],
+#login-modal__body input[type="password"] {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-indent: 1em;
+    outline: none;
+    width: 100%;
+    padding: 15px 0;
+}
+
+#login-modal__body input[type="submit"] {
+    background: #f26964;
+    color: #fff;
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+#login-modal__body a {
+    text-decoration: none;
+    color: #fff;
 }

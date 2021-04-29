@@ -9,9 +9,23 @@ from sqlalchemy import desc
 bp = Blueprint('app', __name__, url_prefix='')
 
 @bp.route('/', methods=['GET', 'POST'])
-@login_required
 def index():
-    return render_template('index.html')
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.select_by_email(form.email.data)
+        if user and user.is_active and user.validate_password(form.password.data):
+            login_user(user, remember=True)
+            next = request.args.get('next')
+            if not next:
+                next = url_for('app.index')
+            return redirect(next)
+        elif not user:
+            flash('存在しないユーザです')
+        elif not user.is_active:
+            flash('無効なユーザです、パスワードを再設定してください')
+        elif not user.validate_password(form.password.data):
+            flash('メールアドレス、またはパスワードが間違っています')
+    return render_template('index.html', form=form)
 
 @bp.route('/logout')
 @login_required

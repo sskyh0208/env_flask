@@ -5,7 +5,19 @@
         <li class="nav__menu__item"><a href="{{ url_for('app.books') }}"><i class="fas fa-book"></i> 単語ブック</a></li>
         <li class="nav__menu__item"><a href="{{ url_for('app.logout') }}"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
         {% else %}
-        <li class="nav__menu__item"><a href="{{ url_for('app.logout') }}"><i class="fas fa-sign-out-alt"></i> ログイン</a></li>
+        <li class="nav__menu__item"><a id="login-open"><i class="fas fa-sign-out-alt" href="#"></i> ログイン</a></li>
         {% endif %}
     </ul>
 </nav>
+{% if not current_user.is_authenticated %}
+<div id="login-mask" class="hidden"></div>
+<section id="login-modal" class="hidden">
+    <div class="login-modal__close__btn">
+        <a id="login-close" class="close-btn"><i class="fas fa-times"></i></a>
+    </div>
+    <div id="login-modal__body">
+        <p>{を削除しますか？</p>
+    </div>
+</section>
+{% endif %}
+<script src="{{ url_for('static', filename='js/login_modal/main.js') }}"></script>

@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from flaskr.config import BaseConfig, DevConfig
 
 login_manager = LoginManager()
-login_manager.login_view = 'app.login'
+login_manager.login_view = 'app.index'
 login_manager.login_message = 'ログインしてください。'
 
 db = SQLAlchemy()

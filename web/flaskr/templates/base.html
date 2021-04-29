@@ -10,12 +10,44 @@
 </head>
 <body>
     <header class="header">
-        {% include "navmenu.html" %}
+        <h1 class="site-logo"><a href="{{ url_for('app.index') }}">TYPING</a></h1>
+        <nav class="gnav">
+            <ul class="nav__menu">
+                {% if current_user.is_authenticated %}
+                <li class="nav__menu__item"><a href="{{ url_for('app.books') }}"><i class="fas fa-book"></i> 単語ブック</a></li>
+                <li class="nav__menu__item"><a href="{{ url_for('app.logout') }}"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                {% else %}
+                <li class="nav__menu__item"><a id="login-open"><i class="fas fa-sign-out-alt" href="#"></i> ログイン</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
     <div class="content">
         {% block content %}
         {% endblock %}
     </div>
+    {% if not current_user.is_authenticated %}
+    <div id="login-mask" class="hidden"></div>
+    <section id="login-modal" class="hidden">
+        <div class="login-modal__close__btn">
+            <a id="login-close" class="close-btn"><i class="fas fa-times"></i></a>
+        </div>
+        <div class="login__modal__header">
+            <h3 class="text-center">TYPING</h3>
+        </div>
+        <div id="login-modal__body">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ form.email() }}
+                {{ form.password() }}
+                {{ form.confirm_password() }}
+                {{ form.submit() }}
+            </form>
+            <a class="btn text-right" href="{{ url_for('app.register') }}">新規登録</a>
+        </div>
+    </section>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/login_modal/main.js') }}"></script>
     <script src="https://kit.fontawesome.com/a2060b8d07.js" crossorigin="anonymous"></script>
 </body>
 </html>
