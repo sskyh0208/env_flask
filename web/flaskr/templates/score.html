@@ -35,17 +35,20 @@
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
-    {% if scores %}
-    <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
-    <p>{{ book.name }} のスコアを削除しますか？</p>
-    <div id="modal__btn">
-        <a id="delete" class="m-btn app-btn" href='/delete_score/{{ book.id }}'>はい</a>
-        <a id="no" class="m-btn deny-btn">いいえ</a>
+    <div class="modal__close__btn">
+        <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
     </div>
-    {% else %}
-    <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
-    <p>現在、スコアが存在しません。</p>
-    {% endif %}
+    <div id="modal__body">
+        {% if scores %}
+        <p>{{ book.name }} のスコアを削除しますか？</p>
+        <div id="modal__btn">
+            <a id="delete" class="m-btn app-btn" href='/delete_score/{{ book.id }}'>はい</a>
+            <a id="no" class="m-btn deny-btn">いいえ</a>
+        </div>
+        {% else %}
+        <p>現在、スコアが存在しません。</p>
+        {% endif %}
+    </div>
 </section>
-<script src="{{ url_for('static', filename='js/modal/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal/main2.js') }}"></script>
 {% endblock %}

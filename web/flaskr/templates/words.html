@@ -62,11 +62,15 @@
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
-    <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
-    <p>{{ book.name }} を削除しますか？</p>
-    <div id="modal__btn">
-        <a id="delete" class="m-btn app-btn" href='/delete_book/{{ book.id }}'>はい</a>
-        <a id="no" class="m-btn deny-btn">いいえ</a>
+    <div class="modal__close__btn">
+        <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
+    </div>
+    <div id="modal__body">
+        <p>{{ book.name }} を削除しますか？</p>
+        <div id="modal__btn">
+            <a id="delete" class="m-btn app-btn" href='/delete_book/{{ book.id }}'>はい</a>
+            <a id="no" class="m-btn deny-btn">いいえ</a>
+        </div>
     </div>
 </section>
 <script src="{{ url_for('static', filename='js/modal/main.js') }}"></script>
