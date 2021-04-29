@@ -38,21 +38,11 @@ class User(UserMixin, db.Model):
     @classmethod
     def select_user_by_id(cls, id):
         return cls.query.get(id)
-    
-    @classmethod
-    def select_user_by_name(cls, username):
-        return cls.query.filter_by(username=username).all()
-    
-    @classmethod
-    def search_description_by_like_word(cls, word):
-        return cls.query.filter(cls.description.like(f'%{word}%')).all()
 
     def save_new_password(self, new_password):
         self.password = generate_password_hash(new_password)
         self.is_active = True
 
-    def update_description(self, value):
-        self.description = value
 
 class PasswordResetToken(db.Model):
     __tablename__ = 'password_reset_token'
@@ -152,10 +142,6 @@ class Word(db.Model):
         self.comment = comment
 
     @classmethod
-    def get_by_id(cls, id):
-        return cls.query.get(id)
-
-    @classmethod
     def get_book_words(cls, book_id):
         return cls.query.filter_by(book_id=book_id).order_by(cls.create_at.desc()).all()
 
@@ -171,12 +157,14 @@ class Score(db.Model):
     __tablename__ = 'score'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('wordbook.id'), nullable=False)
     word_id = db.Column(db.Integer, db.ForeignKey('words.id'), nullable=False)
     typemiss_count = db.Column(db.Integer)
     create_at = db.Column(db.DateTime, default=datetime.now())
 
-    def __init__(self, user_id, word_id, typemiss_count):
+    def __init__(self, user_id, book_id, word_id, typemiss_count):
         self.user_id = user_id
+        self.book_id = book_id
         self.word_id = word_id
         self.typemiss_count = typemiss_count
 
@@ -188,5 +176,13 @@ class Score(db.Model):
         return cls.query.filter_by(book_id=book_id).order_by(cls.typemiss_count.desc()).all()
 
     @classmethod
-    def clear_score(cls, user_id):
-        cls.query.filter_by(user_id=user_id).delete()
+    def delete_book_scores(cls, user_id, book_id):
+        cls.query.filter_by(user_id=user_id, book_id=book_id).delete()
+
+    @classmethod
+    def delete_word_scores(cls, user_id, word_id):
+        cls.query.filter_by(user_id=user_id, word_id=word_id).delete()
+
+    @classmethod
+    def create_new_scores(cls, scores):
+        db.session.execute(cls.__table__.insert(), scores)

@@ -118,6 +118,7 @@ def words(book_id):
 def delete_book(book_id):
     with db.session.begin(subtransactions=True):
         Book.delete(book_id)
+        Score.delete_book_scores(current_user.id,book_id)
     db.session.commit()
     return redirect(url_for('app.books'))
 
@@ -127,6 +128,7 @@ def delete_book(book_id):
 def delete_word(book_id, word_id):
     with db.session.begin(subtransactions=True):
         Word.delete(word_id)
+        Score.delete_word_scores(current_user.id, word_id)
     db.session.commit()
     return redirect(url_for('app.words', book_id=book_id))
 
@@ -145,11 +147,23 @@ def game(book_id):
 @bp.route('/game/score', methods=['POST'])
 @login_required
 def game_score():
-    scores = [{'user_id': current_user.id, 'word_id': val.get('id'), 'typemiss_count': val.get('count')} for val in request.json if val.get('count')]
+    scores = [{'user_id': current_user.id, 'book_id': val.get('book_id'), 'word_id': val.get('word_id'), 'typemiss_count': val.get('count')} for val in request.json if val.get('count')]
     if scores:
-        with db.session.begin(subtransactions=True):
-            db.session.execute(Score.__table__.insert(), scores)
-        db.session.commit()
+        if len(scores) == 1:
+            score = Score(
+                user_id=scores[0].get('user_id'),
+                book_id=scores[0].get('book_id'),
+                word_id=scores[0].get('word_id'),
+                typemiss_count=scores[0].get('typemiss_count')
+            )
+            with db.session.begin(subtransactions=True):
+                score.create_new_score()
+            db.session.commit()
+        else:
+            with db.session.begin(subtransactions=True):
+                Score.create_new_scores(scores)
+            db.session.commit()
+
     return jsonify({'result': 'success'})
 
 @bp.route('/score/<int:book_id>')

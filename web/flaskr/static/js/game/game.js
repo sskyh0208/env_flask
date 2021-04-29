@@ -204,7 +204,7 @@ class Game {
         // コメントを変える
         this.h1.textContent = this.words[0].comment;
         // スコア用の辞書と、参照用の変数にタイピング中の文字列を入れる
-        this.typeWordScore = {"id": this.words[0].id, "text": this.words[0].text, "comment": this.words[0].comment, "count": 0, "totalCount": 0};
+        this.typeWordScore = {"book_id": this.book_id, "word_id": this.words[0].id, "text": this.words[0].text, "comment": this.words[0].comment, "count": 0, "totalCount": 0};
         // spanを作り、一文字ずつspanに入れる
         var splitWord = this.words[0].text.split('');
         for (var i = 0; i < splitWord.length; i++) {
