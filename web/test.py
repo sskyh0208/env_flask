@@ -41,8 +41,7 @@ class MyTest(TestCase):
             self.assertEqual(User.query.count(), 1)
             self.assertEqual(User.query.all()[-1:][0].username, 'test')
             self.assertEqual(User.query.all()[-1:][0].email, 'test@mail.com')
-            self.assert_status(response, 302)
-            self.assert_redirects(response, url_for('app.login'))
+            self.assertEqual(response.data.decode('utf-8'), 'メールアドレスにメッセージが送信されました')
 
             # 重複確認
             self.assertEqual(User.query.count(), 1)
@@ -53,10 +52,7 @@ class MyTest(TestCase):
                 }
             )
             self.assertEqual(User.query.count(), 1)
-
-            # GET
-            response = client.get(url_for('app.register'))
-            self.assert_status(response, 200)
+            self.assertEqual(response.data.decode('utf-8'), 'メールアドレスは既に登録されています。')
 
     def test_reset_password(self):
         with self.client as client:
@@ -144,7 +140,8 @@ class MyTest(TestCase):
                     'confirm_password': 'pass',
                 }
             )
-            self.assert_status(response, 200)
+            self.assert_status(response, 302)
+            self.assertRedirects(response, url_for('app.index'))
             self.assertTrue(current_user.is_anonymous)
 
             # ログイン(not active)
@@ -155,7 +152,8 @@ class MyTest(TestCase):
                     'confirm_password': 'default_password',
                 }
             )
-            self.assert_status(response, 200)
+            self.assert_status(response, 302)
+            self.assertRedirects(response, url_for('app.index'))
             self.assertTrue(current_user.is_anonymous)
 
             # ログイン(password validate error)
@@ -173,7 +171,8 @@ class MyTest(TestCase):
                     'confirm_password': 'pass',
                 }
             )
-            self.assert_status(response, 200)
+            self.assert_status(response, 302)
+            self.assertRedirects(response, url_for('app.index'))
             self.assertTrue(current_user.is_anonymous)
 
     def test_logout(self):
@@ -629,6 +628,72 @@ class MyTest(TestCase):
                 }
             )
             self.assertEqual(Book.query.all()[-1:][0].typing_mode, 1)
+
+    def test_delete_score(self):
+        with self.client as client:
+        # 新規登録
+            response = client.post(url_for('app.register'),
+                data = {
+                    'username': 'test',
+                    'email': 'test@mail.com',
+                }
+            )
+            # パスワードリセット
+            token = PasswordResetToken.query.all()[-1:][0].token
+            response = client.post(url_for('app.reset_password', token=token),
+                data = {
+                    'password': 'password',
+                    'confirm_password': 'password',
+                }
+            )
+            # ログイン(OK)
+            response = client.post(url_for('app.login'),
+                data = {
+                    'email': 'test@mail.com',
+                    'password': 'password',
+                    'confirm_password': 'password',
+                }
+            )
+            # ブック作成
+            response = client.post(url_for('app.books'),
+                data = {
+                    'name': 'test',
+                    'description': 'test',
+                }
+            )
+            # 単語作成
+            response = client.post(url_for('app.words', book_id=1),
+                data = {
+                    'text': 'test',
+                    'comment': 'test',
+                }
+            )
+            response = client.post(url_for('app.words', book_id=1),
+                data = {
+                    'text': 'test2',
+                    'comment': 'test2',
+                }
+            )
+            # スコア登録
+            self.assertEqual(Score.query.count(), 0)
+            response = client.post(url_for('app.game_score'),
+                json = [
+                    {
+                        'book_id': 1,
+                        'word_id': 1,
+                        'count': 1
+                    },
+                    {
+                        'book_id': 1,
+                        'word_id': 2,
+                        'count': 1
+                    }
+                ]
+            )
+
+            self.assertEqual(Score.query.count(), 2)
+            response = client.get(url_for('app.delete_score', book_id=1))
+            self.assertEqual(Score.query.count(), 0)
 
 
 

@@ -131,7 +131,7 @@ def delete_score(book_id):
     with db.session.begin(subtransactions=True):
         Score.delete_book_scores(current_user.id, book_id)
     db.session.commit()
-    return redirect(url_for('app.score'))
+    return redirect(url_for('app.score', book_id=book_id))
 
 # 単語の削除
 @bp.route('/delete_word/<int:book_id>/<int:word_id>')
