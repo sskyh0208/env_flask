@@ -29,7 +29,6 @@
     var words = {{ words | tojson }};
     var mode = {{ mode }};
 </script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/game/game.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/game/main.js') }}"></script>
 {% endblock %}

@@ -41,8 +41,6 @@ a {
     list-style: none;
 }
 
-
-
 .content {
     line-height: 1.6;
     margin: 0 auto;
@@ -162,4 +160,3 @@ a {
     transition: 0.5s;
 }
 
-/* login */

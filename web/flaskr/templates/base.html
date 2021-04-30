@@ -7,6 +7,7 @@
     <title>{% block title %}Flaskテスト{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -29,25 +30,51 @@
     {% if not current_user.is_authenticated %}
     <div id="login-mask" class="hidden"></div>
     <section id="login-modal" class="hidden">
-        <div class="login-modal__close__btn">
+        <div id="login-modal__close__btn">
             <a id="login-close" class="close-btn"><i class="fas fa-times"></i></a>
         </div>
-        <div class="login__modal__header">
-            <h3 class="text-center">TYPING</h3>
+        <div id="login-modal__header">
+            <h3 id="login-modal__title" class="text-center">ログイン</h3>
         </div>
         <div id="login-modal__body">
-            <form method="POST">
-                {{ form.csrf_token }}
-                {{ form.email() }}
-                {{ form.password() }}
-                {{ form.confirm_password() }}
-                {{ form.submit() }}
+            <form action="{{ url_for('app.login') }}" method="POST">
+                {{ login_form.csrf_token }}
+                {{ login_form.email() }}
+                {{ login_form.password() }}
+                {{ login_form.confirm_password() }}
+                {{ login_form.submit() }}
             </form>
-            <a class="btn text-right" href="{{ url_for('app.register') }}">新規登録</a>
+            <a id="login-register" class="btn text-right" href="#">新規登録</a>
         </div>
     </section>
-    {% endif %}
+    <section id="register-modal" class="hidden">
+        <div id="register-modal__close__btn">
+            <a id="register-close" class="close-btn"><i class="fas fa-times"></i></a>
+        </div>
+        <div id="register-modal__header">
+            <h3 id="register-modal__title" class="text-center">新規登録</h3>
+        </div>
+        <div id="register-modal__body">
+            <form id="register-form">
+                {{ register_form.csrf_token }}
+                {{ register_form.username() }}
+                {{ register_form.email() }}
+                {{ register_form.submit() }}
+            </form>
+        </div>
+    </section>
+    <section id="result-modal" class="hidden">
+        <div id="result-modal__close__btn">
+            <a id="result-close" class="close-btn"><i class="fas fa-times"></i></a>
+        </div>
+        <div id="result-modal__header">
+            <h3 id="result-modal__title" class="text-center"></h3>
+        </div>
+        <div id="result-modal__body">
+        </div>
+    </section>
     <script src="{{ url_for('static', filename='js/login_modal/main.js') }}"></script>
+    {% endif %}
     <script src="https://kit.fontawesome.com/a2060b8d07.js" crossorigin="anonymous"></script>
 </body>
 </html>

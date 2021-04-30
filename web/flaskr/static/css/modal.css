@@ -80,6 +80,8 @@
     z-index: 20;
 }
 
+#result-modal,
+#register-modal,
 #login-modal {
     position: absolute;
     top: 50%;
@@ -90,11 +92,14 @@
     transition: 0.4s;
     background: #2a3644;
     color: #fff;
-    width: 400px;
+    width: 480px;
     border-radius: 10px;
     text-align: center;
 }
 
+
+#result-modal__body,
+#register-modal__body,
 #login-modal__body {
     display: flex;
     flex-direction: column;
@@ -106,10 +111,14 @@
     display: none;
 }
 
+#result-modal.hidden,
+#register-modal.hidden,
 #login-modal.hidden {
     transform: translate(-50%, -800px);
 }
 
+#result-modal #result-close,
+#register-modal #register-close,
 #login-modal #login-close {
     display: block;
     position: absolute;
@@ -117,11 +126,13 @@
     right: 16px;
 }
 
+#register-modal__body form,
 #login-modal__body form{
     display: flex;
     flex-direction: column;
 }
 
+#register-modal__body input,
 #login-modal__body input {
     border-radius: 5px;
     border: 0;
@@ -129,10 +140,13 @@
     margin: 2.5px;
 }
 
+#register-modal__body input:-webkit-autofill,
 #login-modal__body input:-webkit-autofill {
     box-shadow: 0 0 0 1000px rgba(42, 54, 68, 0.2) inset;
 }
 
+#register-modal__body input[type="text"],
+#register-modal__body input[type="password"],
 #login-modal__body input[type="text"],
 #login-modal__body input[type="password"] {
     background: rgba(0, 0, 0, 0.2);
@@ -143,6 +157,7 @@
     padding: 15px 0;
 }
 
+#register-modal__body input[type="submit"],
 #login-modal__body input[type="submit"] {
     background: #f26964;
     color: #fff;
@@ -152,6 +167,8 @@
     cursor: pointer;
 }
 
+#result-modal__body a,
+#register-modal__body a,
 #login-modal__body a {
     text-decoration: none;
     color: #fff;

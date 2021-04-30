@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Flaskテスト{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div id="overlay"></div>
-    <video id="bg-video" src="{{ url_for('static', filename='video/keytype.mp4') }}" autoplay muted loop></video>
-    <div class="container">
+    <header class="header">
+        <h1 class="site-logo"><a href="{{ url_for('app.index') }}">TYPING</a></h1>
+    </header>
+    <div class="content">
         {% block content %}
         {% endblock %}
     </div>
+    <script src="https://kit.fontawesome.com/a2060b8d07.js" crossorigin="anonymous"></script>
 </body>
 </html>

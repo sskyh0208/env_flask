@@ -10,30 +10,17 @@ bp = Blueprint('app', __name__, url_prefix='')
 
 @bp.route('/', methods=['GET', 'POST'])
 def index():
-    form = LoginForm(request.form)
-    if request.method == 'POST' and form.validate():
-        user = User.select_by_email(form.email.data)
-        if user and user.is_active and user.validate_password(form.password.data):
-            login_user(user, remember=True)
-            next = request.args.get('next')
-            if not next:
-                next = url_for('app.index')
-            return redirect(next)
-        elif not user:
-            flash('存在しないユーザです')
-        elif not user.is_active:
-            flash('無効なユーザです、パスワードを再設定してください')
-        elif not user.validate_password(form.password.data):
-            flash('メールアドレス、またはパスワードが間違っています')
-    return render_template('index.html', form=form)
+    login_form = LoginForm()
+    register_form = RegisterForm()
+    return render_template('index.html', login_form=login_form, register_form=register_form)
 
 @bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('app.login'))
+    return redirect(url_for('app.index'))
 
-@bp.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['POST'])
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -50,13 +37,12 @@ def login():
             flash('無効なユーザです、パスワードを再設定してください')
         elif not user.validate_password(form.password.data):
             flash('メールアドレス、またはパスワードが間違っています')
-    return render_template('login.html', form=form)
+    return redirect(url_for('app.index'))
 
-@bp.route('/register', methods=['GET', 'POST'])
+@bp.route('/register', methods=['POST'])
 def register():
     form = RegisterForm(request.form)
-    print(request.method)
-    if request.method == 'POST' and form.validate():
+    if form.validate():
         user = User(
             email=form.email.data,
             username=form.username.data
@@ -66,26 +52,28 @@ def register():
         db.session.commit()
         token = PasswordResetToken.publish_token(user)
         print(f'パスワード設定用URL: http://127.0.0.1:5000/reset_password/{str(token)}')
-        return redirect(url_for('app.login'))
-    return render_template('register.html', form=form)
+        return 'メールアドレスにメッセージが送信されました'
+    return 'メールアドレスは既に登録されています。'
 
 @bp.route('/reset_password/<uuid:token>', methods=['GET', 'POST'])
 def reset_password(token):
-    form = ResetPasswordForm(request.form)
+    login_form = LoginForm()
+    register_form = RegisterForm()
+    reset_password_form = ResetPasswordForm(request.form)
     reset_user_id = PasswordResetToken.get_user_id_by_token(token)
 
     if not reset_user_id:
         abort(500)
-    if request.method == 'POST' and form.validate():
-        password = form.password.data
+    if request.method == 'POST' and reset_password_form.validate():
+        password = reset_password_form.password.data
         user = User.select_user_by_id(reset_user_id)
         with db.session.begin(subtransactions=True):
             user.save_new_password(password)
             PasswordResetToken.delete_token(token)
         db.session.commit()
         flash('パスワードを更新しました')
-        return redirect(url_for('app.login'))
-    return render_template('reset_password.html', form=form)
+        return redirect(url_for('app.index'))
+    return render_template('reset_password.html', login_form=login_form, register_form=register_form, reset_password_form=reset_password_form)
 
 # ブック画面
 @bp.route('/books', methods=['GET', 'POST'])
