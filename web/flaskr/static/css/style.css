@@ -5,12 +5,10 @@ html,body{
     padding: 0;
 }
 
-
 a {
-    color: #fff;
+    cursor: pointer;
     text-decoration: none;
 }
-
 
 .header {
     background: #2a3644;
@@ -22,11 +20,6 @@ a {
     position: fixed;
     width: 100%;
     z-index: 10;
-}
-
-.site-logo img{
-    height: 20px;
-    width: auto;
 }
 
 .nav__menu {
@@ -82,6 +75,7 @@ a {
     border: 0;
     cursor: pointer;
 }
+
 
 .app-btn {
     background: #f26964;
@@ -160,3 +154,41 @@ a {
     transition: 0.5s;
 }
 
+.register-btn {
+    background: royalblue;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.register-btn:hover {
+    background: rgb(40, 80, 200);
+    transition: 0.5s;
+}
+
+.submit-btn {
+    width: 100%;
+    border-radius: 5px;
+    border: 0;
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+.white-link {
+    color: #fff;
+    transition: 0.5s;
+}
+
+.white-link:hover {
+    color: rgb(230, 230, 230);
+    transition: 0.5s;
+}
+
+.red-link {
+    color: #f26964;
+    transition: 0.5s;
+}
+
+.red-link:hover {
+    color: #ff4b4b;
+    transition: 0.5s;
+}

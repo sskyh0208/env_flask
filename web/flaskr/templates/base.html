@@ -11,14 +11,14 @@
 </head>
 <body>
     <header class="header">
-        <h1 class="site-logo"><a href="{{ url_for('app.index') }}">TYPING</a></h1>
+        <h1 class="site-title"><a href="{{ url_for('app.index') }}" class="white-link">TYPING</a></h1>
         <nav class="gnav">
             <ul class="nav__menu">
                 {% if current_user.is_authenticated %}
-                <li class="nav__menu__item"><a href="{{ url_for('app.books') }}"><i class="fas fa-book"></i> 単語ブック</a></li>
-                <li class="nav__menu__item"><a href="{{ url_for('app.logout') }}"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                <li class="nav__menu__item"><a href="{{ url_for('app.books') }}" class="white-link"><i class="fas fa-book"></i> 単語ブック</a></li>
+                <li class="nav__menu__item"><a href="{{ url_for('app.logout') }}" class="white-link"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
                 {% else %}
-                <li class="nav__menu__item"><a id="login-open"><i class="fas fa-sign-out-alt" href="#"></i> ログイン</a></li>
+                <li class="nav__menu__item"><a id="login-open"><i class="fas fa-sign-in-alt"></i> ログイン</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -37,14 +37,14 @@
             <h3 id="login-modal__title" class="text-center">ログイン</h3>
         </div>
         <div id="login-modal__body">
-            <form action="{{ url_for('app.login') }}" method="POST">
+            <form id="login-form">
                 {{ login_form.csrf_token }}
                 {{ login_form.email() }}
                 {{ login_form.password() }}
                 {{ login_form.confirm_password() }}
-                {{ login_form.submit() }}
+                {{ login_form.submit(class="app-btn submit-btn") }}
             </form>
-            <a id="login-register" class="btn text-right" href="#">新規登録</a>
+            <a id="login-register" class="register-btn submit-btn" href="#">新規登録</a>
         </div>
     </section>
     <section id="register-modal" class="hidden">
@@ -59,7 +59,7 @@
                 {{ register_form.csrf_token }}
                 {{ register_form.username() }}
                 {{ register_form.email() }}
-                {{ register_form.submit() }}
+                {{ register_form.submit(class="app-btn submit-btn") }}
             </form>
         </div>
     </section>

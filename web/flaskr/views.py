@@ -30,14 +30,15 @@ def login():
             next = request.args.get('next')
             if not next:
                 next = url_for('app.index')
-            return redirect(next)
+            return jsonify({'success': True}), 200, {'ContentType': 'application/json'}
+            # return redirect(next)
         elif not user:
-            flash('存在しないユーザです')
+            return jsonify({'success': False, 'message': '存在しないユーザです'}), 200, {'ContentType': 'application/json'}
         elif not user.is_active:
-            flash('無効なユーザです、パスワードを再設定してください')
+            return jsonify({'success': False, 'message': '無効なユーザです、パスワードを再設定してください'}), 200, {'ContentType': 'application/json'}
         elif not user.validate_password(form.password.data):
-            flash('メールアドレス、またはパスワードが間違っています')
-    return redirect(url_for('app.index'))
+            return jsonify({'success': False, 'message': 'メールアドレス、またはパスワードが間違っています'}), 200, {'ContentType': 'application/json'}
+    return jsonify({'success': False, 'message': 'パスワードが間違っています。'}), 200, {'ContentType': 'application/json'}
 
 @bp.route('/register', methods=['POST'])
 def register():

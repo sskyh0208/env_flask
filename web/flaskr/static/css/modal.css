@@ -137,7 +137,7 @@
     border-radius: 5px;
     border: 0;
     font-size: 16px;
-    margin: 2.5px;
+    margin-bottom: 2.5px;
 }
 
 #register-modal__body input:-webkit-autofill,
@@ -155,16 +155,6 @@
     outline: none;
     width: 100%;
     padding: 15px 0;
-}
-
-#register-modal__body input[type="submit"],
-#login-modal__body input[type="submit"] {
-    background: #f26964;
-    color: #fff;
-    width: 100%;
-    padding: 15px 0;
-    margin-bottom: 16px;
-    cursor: pointer;
 }
 
 #result-modal__body a,

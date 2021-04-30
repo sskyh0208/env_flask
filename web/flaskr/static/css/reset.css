@@ -52,6 +52,7 @@
     border: 0;
     text-indent: 1em;
     margin-bottom: 8px;
+    padding: 0;
 }
 
 .reset__form [type="submit"] {
