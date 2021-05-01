@@ -4,47 +4,51 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/words.css') }}">
-<div class="word__wrapper">
-    <div class="word__content">
-        <div class="word__btn">
+<div class="content-title">
+    <h1>単語ブックの編集</h1>
+</div>
+<div class="words-wrapper">
+    <div class="words-body">
+        <div class="words-body-btn">
             <a id="back" class="back-btn" href="/books"><i class="fas fa-arrow-left"></i></a>
             <a id="open" class="delete-btn"><i class="fas fa-trash-alt"></i></a>
         </div>
-        <div class="word__title">
+        <div class="words-body-title">
             <div>
                 <h1>{{ book.name }}</h1>
                 <p>{{ book.description }}</p>
                 <p>{{ words_count }}　個の単語を登録中。</p>
             </div>
         </div>
-        <div class="word__form">
+        <div class="words-body-form">
             <form method="POST">
                 {{ form.csrf_token }}
-                <div class="word__form__input">
+                <div class="words-body-form-input">
                     {{ form.text() }}
                 </div>
-                <div class="word__form__input">
+                <div class="words-body-form-input">
                     {{ form.comment() }}
                 </div>
-                <div class="word__form__btn">
+                <div class="words-body-form-btn">
                     {{ form.submit(class="m-btn app-btn") }}
                 </div>
             </form>
         </div>
-        <div class="word__table">
-            <dl class="word__table__head">
+        <div class="words-body-table">
+            <dl class="words-body-table-head">
                 <dt>
                     <span>単語</span>
                 </dt>
                 <dd>
                     <span>意味</span>
+                    
                 </dd>
                 <dd>
                 </dd>
             </dl>
             {% if words %}
             {% for word in words %}
-            <dl class="word__table__row">
+            <dl class="words-body-table-row">
                 <dt>
                     <span>{{ word.text }}</span>
                 </dt>
@@ -62,12 +66,12 @@
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
-    <div class="modal__close__btn">
+    <div class="modal-btn">
         <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
     </div>
-    <div id="modal__body">
+    <div class="modal-body">
         <p>{{ book.name }} を削除しますか？</p>
-        <div id="modal__btn">
+        <div id="modal-body-btn">
             <a id="delete" class="m-btn app-btn" href='/delete_book/{{ book.id }}'>はい</a>
             <a id="no" class="m-btn deny-btn">いいえ</a>
         </div>

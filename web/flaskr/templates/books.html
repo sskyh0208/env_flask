@@ -4,12 +4,12 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/books.css') }}">
-<div class="title">
+<div class="content-title">
     <h1>あなたの単語ブック</h1>
 </div>
-<div class="card__wrapper">
+<div class="content-wrapper">
     <div class="card">
-        <div class="card__form">
+        <div class="card-form">
             <form method="POST">
                 {{ form.csrf_token }}
                 {{ form.name() }}
@@ -21,28 +21,28 @@
     {% if books %}
     {% for book in books %}
     <div class="card">
-        <div class="card__header">
-            <div class="card__option__btn">
+        <div class="card-header">
+            <div class="card-header-btn">
                 <a class="option-btn" onclick="changeOnclickFunction('{{ book.id }}')"><i class="fa fa-cog"></i></a>
             </div>
-            <ul class="card__nav">
-                <li class="card__nav__item">
+            <ul class="card-header-nav">
+                <li class="card-header-nav-item">
                     <a href="/game/{{ book.id }}" class="red-link">タイピング</a>
                 </li>
-                <li class="card__nav__item">
+                <li class="card-header-nav-item">
                     <a href="/score/{{ book.id }}" class="red-link">スコア</a>
                 </li>
-                <li class="card__nav__item">
+                <li class="card-header-nav-item">
                     <a href="/words/{{ book.id }}" class="red-link">編集</a>
                 </li>
             </ul>
         </div>
-        <div class="card__body">
-            <h3 class="card__title">{{ book.name }}</h4>
-            <p class="card__text">{{ book.description }}</p>
+        <div class="card-body">
+            <h3>{{ book.name }}</h4>
+            <p>{{ book.description }}</p>
         </div>
-        <div class="card__footer">
-            <small class="text__muted">更新日:{{ book.update_at.strftime('%Y-%m-%d') }}</small>
+        <div class="card-footer">
+            <small>更新日:{{ book.update_at.strftime('%Y-%m-%d') }}</small>
         </div>
     </div>
     {% endfor %}
@@ -50,10 +50,10 @@
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
-    <div class="modal__close__btn">
+    <div class="modal-btn">
         <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
     </div>
-    <div id="modal__body">
+    <div class="modal-body">
         <p>タイピングモードを変更しますか？</p>
         <table>
             <tr>

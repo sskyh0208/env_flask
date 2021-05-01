@@ -1,4 +1,4 @@
-.card__wrapper {
+.content-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -16,34 +16,34 @@
     text-align: center;
 }
 
-.card__option__btn{
+.card-header-btn{
     position: relative;
     width: 100%;
 }
 
-.card__option__btn i{
+.card-header-btn i{
     position: absolute;
     top: 10px;
     right: 10px;
 }
 
-.card__header {
+.card-header {
     height: 50px;
 }
 
-.card__form {
+.card-form {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
 }
 
-.card__form form {
+.card-form form {
     display: flex;
     flex-direction: column;
 }
 
-.card__form form input[type="text"] {
+.card-form form input[type="text"] {
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
     margin-bottom: 10px;
@@ -54,11 +54,11 @@
     height: 24px;
 }
 
-.card__form form input[type="text"]::placeholder {
+.card-form form input[type="text"]::placeholder {
     padding-left: 8px;
 }
 
-.card__form form input[type="submit"] {
+.card-form form input[type="submit"] {
     border: 0;
     background: #f26964;
     border-radius: 5px;
@@ -69,12 +69,12 @@
     transition: 0.5s;
 }
 
-.card__form form input[type="submit"]:hover {
+.card-form form input[type="submit"]:hover {
     background: #ff4b4b;
     transition: 0.5s;
 }
 
-.card__nav {
+.card-header-nav {
     display: flex;
     list-style: none;
     justify-content: center;
@@ -84,26 +84,26 @@
     padding: 0;
 }
 
-.card__nav__item {
+.card-header-nav-item {
     margin-right: 32px;
 }
 
-.card__nav__item a {
+.card-header-nav-item a {
     font-size: 16px;
     font-weight: bold;
 }
 
 
-.card__body h3 {
+.card-body h3 {
     color: #fff;
     margin-top: 0;
 }
 
-.card__body p {
+.card-body p {
     color: #fff;
 }
 
-.card__footer {
+.card-footer {
     background: slategray;
     width: 100%;
     color: #fff;
@@ -111,12 +111,12 @@
     border-bottom-right-radius: 10px;
 }
 
-.modal__close__btn{
+.modal-btn{
     position: relative;
     width: 100%;
 }
 
-.modal__close__btn a{
+.modal-btn a{
     position: absolute;
     top: 16px;
     right: 16px;

@@ -10,6 +10,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    list-style: none;
+}
+
 .header {
     background: #2a3644;
     color: #fff;
@@ -22,16 +26,12 @@ a {
     z-index: 10;
 }
 
-.nav__menu {
+.header-nav-menu {
     display: flex;
 }
 
-.nav__menu__item {
+.header-nav-menu-item {
     margin-right: 40px;
-}
-
-.nav__menu li{
-    list-style: none;
 }
 
 .content {
@@ -41,7 +41,7 @@ a {
     width: 660px;
 }
 
-.title h1 {
+.content-title h1 {
     color: #2a3644;
     text-align: center;
 }

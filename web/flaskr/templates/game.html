@@ -4,12 +4,10 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
-<div class="title">
-    <h1>
-        {{ book_name }}
-    </h1>
-<div class="game__wrapper">
-    <div class="game__display">
+<div class="content-title">
+    <h1>{{ book_name }}</h1>
+<div class="content-wrapper">
+    <div class="game-body">
         <h1 id=comment></h1>
         <p id="text"></p>
         <div id="score">

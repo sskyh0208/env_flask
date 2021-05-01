@@ -4,28 +4,28 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/score.css') }}">
-<div class="title">
-    <h1 class="title">今まで間違えてる回数</h1>
+<div class="content-title">
+    <h1>今まで間違えてる回数</h1>
 </div>
-<div class="score__wrapper">
-    <div class="score__table">
-        <div class="score__btn">
+<div class="content-wrapper">
+    <div class="score-body">
+        <div class="score-body-btn">
             <a id="back" class="back-btn" href="/books"><i class="fas fa-arrow-left"></i></a>
             <a id="open" class="delete-btn"><i class="fas fa-trash-alt"></i></a>
         </div>
-        <div class="score__title">
+        <div class="score-body-title">
             <div>
                 <h1>{{ book.name }}</h1>
                 <p>{{ book.description }}</p>
             </div>
         </div>
-        <dl class="score__table__head">
+        <dl class="score-body-head">
             <dt>単語</dt>
             <dd>意味</dd>
             <dd>ミス</dd>
         </dl>
         {% for score in scores %}
-        <dl class="score__table__row">
+        <dl class="score-body-row">
             <dt>{{ score.Word.text }}</dt>
             <dd>{{ score.Word.comment }}</dd>
             <dd>{{ score.typemiss_count }}</dd>
@@ -35,13 +35,13 @@
 </div>
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
-    <div class="modal__close__btn">
+    <div class="modal-btn">
         <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
     </div>
-    <div id="modal__body">
+    <div class="modal-body">
         {% if scores %}
         <p>{{ book.name }} のスコアを削除しますか？</p>
-        <div id="modal__btn">
+        <div id="modal-body-btn">
             <a id="delete" class="m-btn app-btn" href='/delete_score/{{ book.id }}'>はい</a>
             <a id="no" class="m-btn deny-btn">いいえ</a>
         </div>
@@ -50,5 +50,5 @@
         {% endif %}
     </div>
 </section>
-<script src="{{ url_for('static', filename='js/modal/main2.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modal/main.js') }}"></script>
 {% endblock %}

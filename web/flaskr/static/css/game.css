@@ -1,9 +1,9 @@
-.game__wrapper {
+.content-wrapper {
     width: 100%;
     margin: auto;
 }
 
-.game__display {
+.game-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,32 +12,32 @@
     padding: 20px 40px;
 }
 
-.game__display #comment {
+.game-body #comment {
     font-weight: bold;
     text-align: center;
     color: #fff;
 }
 
-.game__display #text {
+.game-body #text {
     font-size: 4em;
     font-weight: bold;
     color: #2a3644;
     text-align: center;
     margin-top: 0;
 }
-.game__display #score {
+.game-body #score {
     text-align: center;
     color: #fff;
 }
-.game__display span {
+.game-body span {
     transition: all 300ms 0s ease;
 }
-.game__display .add-blue {
+.game-body .add-blue {
     font-size: 0.5em;
     color: #f26964;
 }
 
-.game__display #result {
+.game-body #result {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,31 +1,31 @@
-.score__wrapper {
+.content-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
 }
 
-.score__btn {
+.score-body-btn {
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.score__title {
+.score-body-title {
     display: flex;
     justify-content:flex-start;
 }
 
-.score__title h1 {
+.score-body-title h1 {
     color: #f26964;
 }
 
-.score__title p {
+.score-body-title p {
     color: #fff;
 }
 
-.score__table {
+.score-body {
     background: #2a3644;
     padding: 40px;
     border-radius: 10px;
@@ -33,25 +33,25 @@
     border: 0;
 }
 
-.score__table dl {
+.score-body dl {
     display: flex;
 }
 
-.score__table dl dt,
-.score__table dl dd {
+.score-body dl dt,
+.score-body dl dd {
     width: 45%;
     display: flex;
     align-items: center;
 }
 
-.score__table dl dd:nth-child(3) {
+.score-body dl dd:nth-child(3) {
     width: 10%;
 }
 
-.score__table__head {
+.score-body-head {
     color: #f26964;
 }
 
-.score__table__row {
+.score-body-row {
     color: #fff;
 }

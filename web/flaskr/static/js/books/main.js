@@ -1,21 +1,16 @@
-'use strict';
-{
-  const modal = document.getElementById('modal');
-  const mask = document.getElementById('mask');
-  const close = document.getElementById('close');
+const modal = document.getElementById('modal');
+const mask = document.getElementById('mask');
+const close = document.getElementById('close');
 
-  mask.addEventListener('click', function () {
+mask.addEventListener('click', function () {
     modal.classList.add('hidden');
     mask.classList.add('hidden');
-  });
+});
 
-  close.addEventListener('click', function () {
+close.addEventListener('click', function () {
     modal.classList.add('hidden');
     mask.classList.add('hidden');
-  });
-
-
-};
+});
 
 function changeMode(book_id, typing_mode) {
     var data = {"book_id": book_id, "typing_mode": typing_mode};
@@ -25,12 +20,10 @@ function changeMode(book_id, typing_mode) {
         contentType: 'application/json',
         data: JSON.stringify(data)
     }).done(function(data) {
-        return;
+      return;
     }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-        return;
+      return;
     })
-    const modal = document.getElementById('modal');
-    const mask = document.getElementById('mask');
     setTimeout(() => {
         modal.classList.add('hidden');
         mask.classList.add('hidden');

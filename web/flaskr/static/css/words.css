@@ -1,11 +1,11 @@
-.word__wrapper {
+.words-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
 }
 
-.word__content {
+.words-body {
     display: flex;
     flex-direction: column;
     background: #2a3644;
@@ -15,43 +15,43 @@
     box-shadow: 0 2px 5px rgb(87, 87, 87);
 }
 
-.word__btn {
+.words-body-btn {
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.word__title {
+.words-body-title {
     display: flex;
     justify-content:flex-start;
     background: #2a3644;
 }
 
-.word__title h1 {
+.words-body-title h1 {
     color: #f26964;
 }
 
-.word__title p {
+.words-body-title p {
     color: #fff;
 }
 
-.word__form {
+.words-body-form {
     background: #2a3644;
     padding: 40px;
 }
 
-.word__form form {
+.words-body-form form {
     display: flex;
     flex-direction: column;
 }
 
-.word__form__input {
+.words-body-form-input {
     width: 100%;
 }
 
 
-.word__form [type="text"] {
+.words-body-form [type="text"] {
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
     font-size: 20px;
@@ -64,50 +64,50 @@
     margin-bottom: 8px;
 }
 
-.word__form__btn {
+.words-body-form-btn {
     display: flex;
     justify-content: flex-end;
 }
 
-.word__form dl,
-.word__table dl {
+.words-body-form dl,
+.words-body-table dl {
     display: flex;
 }
 
-.word__form dl dt,
-.word__form dl dd {
+.words-body-form dl dt,
+.words-body-form dl dd {
     width: 160px;
 }
 
-.word__table__row dt,
-.word__table__row dd:nth-child(2n) {
+.words-body-table-row dt,
+.words-body-table-row dd:nth-child(2n) {
     border-bottom: dotted 1px grey;
     align-items: flex-end;
 }
 
-.word__table dl dt,
-.word__table dl dd {
+.words-body-table dl dt,
+.words-body-table dl dd {
     width: 45%;
     display: flex;
 }
 
-.word__table dl dd:nth-child(3) {
+.words-body-table dl dd:nth-child(3) {
     width: 10%;
 }
 
-.word__table {
+.words-body-table {
     background: #2a3644;
 }
 
-.word__table__head span {
+.words-body-table-head span {
     color: #f26964;
 }
 
-.word__table__row span {
+.words-body-table-row span {
     color: #fff;
 }
 
-.word__table__row .dlt-btn {
+.words-body-table-row .dlt-btn {
     color: #fff;
     border-radius: 5px;
     padding: 5px 10px;
@@ -115,7 +115,7 @@
     cursor: pointer;
 }
 
-.word__table__row .dlt-btn {
+.words-body-table-row .dlt-btn {
     background: grey;
 }
 

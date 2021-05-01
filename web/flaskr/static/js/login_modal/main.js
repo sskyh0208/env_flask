@@ -96,7 +96,7 @@ $('#login-form').submit(function(e) {
 });
 
 function createResultMessage(message) {
-    var resultModalBody = document.getElementById('result-modal__body');
+    var resultModalBody = document.getElementById('resultModal-body');
     while(resultModalBody.firstChild) {
         resultModalBody.removeChild(resultModalBody.firstChild);
     }
