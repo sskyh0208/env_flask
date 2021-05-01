@@ -3,13 +3,18 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    background: #2a3644;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgb(87, 87, 87);
+    border: 0;
 }
 
-.score-body-btn {
+.score-btn {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+}
+
+.score-body {
+    padding: 40px;
 }
 
 .score-body-title {
@@ -17,21 +22,11 @@
     justify-content:flex-start;
 }
 
-.score-body-title h1 {
-    color: #f26964;
-}
-
+.score-body-title h1,
 .score-body-title p {
     color: #fff;
 }
 
-.score-body {
-    background: #2a3644;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgb(87, 87, 87);
-    border: 0;
-}
 
 .score-body dl {
     display: flex;

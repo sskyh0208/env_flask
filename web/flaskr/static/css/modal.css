@@ -117,49 +117,9 @@
     transform: translate(-50%, -800px);
 }
 
-#result-modal #result-close,
-#register-modal #register-close,
-#login-modal #login-close {
+.modalCloseBtn {
     display: block;
     position: absolute;
     top: 16px;
     right: 16px;
-}
-
-.registerModal-body form,
-.loginModal-body form{
-    display: flex;
-    flex-direction: column;
-}
-
-.registerModal-body input,
-.loginModal-body input {
-    border-radius: 5px;
-    border: 0;
-    font-size: 16px;
-    margin-bottom: 2.5px;
-}
-
-.registerModal-body input:-webkit-autofill,
-.loginModal-body input:-webkit-autofill {
-    box-shadow: 0 0 0 1000px rgba(42, 54, 68, 0.2) inset;
-}
-
-.registerModal-body input[type="text"],
-.registerModal-body input[type="password"],
-.loginModal-body input[type="text"],
-.loginModal-body input[type="password"] {
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    text-indent: 1em;
-    outline: none;
-    width: 100%;
-    padding: 15px 0;
-}
-
-.resultModal-body a,
-.registerModal-body a,
-.loginModal-body a {
-    text-decoration: none;
-    color: #fff;
 }

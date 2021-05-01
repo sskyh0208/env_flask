@@ -1,67 +1,26 @@
 .words-wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
+    background: #2a3644;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgb(87, 87, 87);
+    border: 0;
 }
 
 .words-body {
     display: flex;
     flex-direction: column;
-    background: #2a3644;
-    border-radius: 10px;
-    border: 0;
     padding: 40px;
-    box-shadow: 0 2px 5px rgb(87, 87, 87);
 }
 
-.words-body-btn {
+.words-btn {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
 }
 
-.words-body-title {
-    display: flex;
-    justify-content:flex-start;
-    background: #2a3644;
-}
-
-.words-body-title h1 {
-    color: #f26964;
-}
-
+.words-body-title h1,
 .words-body-title p {
     color: #fff;
-}
-
-.words-body-form {
-    background: #2a3644;
-    padding: 40px;
-}
-
-.words-body-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.words-body-form-input {
-    width: 100%;
-}
-
-
-.words-body-form [type="text"] {
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    font-size: 20px;
-    height: 40px;
-    width: 100%;
-    outline: none;
-    border-radius: 5px;
-    border: 0;
-    text-indent: 1em;
-    margin-bottom: 8px;
 }
 
 .words-body-form-btn {
@@ -72,11 +31,6 @@
 .words-body-form dl,
 .words-body-table dl {
     display: flex;
-}
-
-.words-body-form dl dt,
-.words-body-form dl dd {
-    width: 160px;
 }
 
 .words-body-table-row dt,
@@ -106,16 +60,3 @@
 .words-body-table-row span {
     color: #fff;
 }
-
-.words-body-table-row .dlt-btn {
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    border: 0;
-    cursor: pointer;
-}
-
-.words-body-table-row .dlt-btn {
-    background: grey;
-}
-

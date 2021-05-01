@@ -8,11 +8,11 @@
     <h1>単語ブックの編集</h1>
 </div>
 <div class="words-wrapper">
+    <div class="words-btn">
+        <a id="back" class="back-btn lt-btn" href="/books"><i class="fas fa-arrow-left"></i></a>
+        <a id="open" class="delete-btn rt-btn"><i class="fas fa-trash-alt"></i></a>
+    </div>
     <div class="words-body">
-        <div class="words-body-btn">
-            <a id="back" class="back-btn" href="/books"><i class="fas fa-arrow-left"></i></a>
-            <a id="open" class="delete-btn"><i class="fas fa-trash-alt"></i></a>
-        </div>
         <div class="words-body-title">
             <div>
                 <h1>{{ book.name }}</h1>
@@ -21,13 +21,13 @@
             </div>
         </div>
         <div class="words-body-form">
-            <form method="POST">
+            <form method="POST" class="flexColumnForm">
                 {{ form.csrf_token }}
                 <div class="words-body-form-input">
-                    {{ form.text() }}
+                    {{ form.text(class="l-input") }}
                 </div>
                 <div class="words-body-form-input">
-                    {{ form.comment() }}
+                    {{ form.comment(class="l-input") }}
                 </div>
                 <div class="words-body-form-btn">
                     {{ form.submit(class="m-btn app-btn") }}
@@ -67,7 +67,7 @@
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
     <div class="modal-btn">
-        <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
+        <a id="close" class="close-btn modalCloseBtn"><i class="fas fa-times"></i></a>
     </div>
     <div class="modal-body">
         <p>{{ book.name }} を削除しますか？</p>

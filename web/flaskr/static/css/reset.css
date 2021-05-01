@@ -31,35 +31,3 @@
     background: #2a3644;
     padding: 20px 40px 40px 40px;
 }
-
-.reset-body-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.reset-body-form-input {
-    width: 100%;
-}
-
-.reset-body-form [type="password"] {
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    font-size: 20px;
-    height: 40px;
-    width: 100%;
-    outline: none;
-    border-radius: 5px;
-    border: 0;
-    text-indent: 1em;
-    margin-bottom: 8px;
-    padding: 0;
-}
-
-.reset-body-form [type="submit"] {
-    width: 100%;
-}
-
-.reset-body-form-btn {
-    display: flex;
-    justify-content: flex-end;
-}

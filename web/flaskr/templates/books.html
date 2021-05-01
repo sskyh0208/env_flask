@@ -10,11 +10,11 @@
 <div class="content-wrapper">
     <div class="card">
         <div class="card-form">
-            <form method="POST">
+            <form method="POST" class="flexColumnForm">
                 {{ form.csrf_token }}
-                {{ form.name() }}
-                {{ form.description() }}
-                {{ form.submit() }}
+                {{ form.name(class="s-input") }}
+                {{ form.description(class="s-input") }}
+                {{ form.submit(class="app-btn s-submit") }}
             </form>
         </div>
     </div>
@@ -51,7 +51,7 @@
 <div id="mask" class="hidden"></div>
 <section id="modal" class="hidden">
     <div class="modal-btn">
-        <a id="close" class="close-btn"><i class="fas fa-times"></i></a>
+        <a id="close" class="close-btn modalCloseBtn"><i class="fas fa-times"></i></a>
     </div>
     <div class="modal-body">
         <p>タイピングモードを変更しますか？</p>

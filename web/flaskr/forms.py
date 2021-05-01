@@ -7,8 +7,7 @@ from flaskr.models import User
 # ログイン画面
 class LoginForm(Form):
     email = StringField('メールアドレス', render_kw={"placeholder": "メールアドレス"}, validators=[DataRequired(), Email()])
-    password = PasswordField('パスワード', render_kw={"placeholder": "パスワード"}, validators=[DataRequired(), EqualTo('confirm_password', message='パスワードが一致しません')])
-    confirm_password = PasswordField('パスワード確認', render_kw={"placeholder": "パスワード確認"}, validators=[DataRequired()])
+    password = PasswordField('パスワード', render_kw={"placeholder": "パスワード"}, validators=[DataRequired()])
     submit = SubmitField('ログイン')
 
 # 登録画面

@@ -8,6 +8,7 @@ html,body{
 a {
     cursor: pointer;
     text-decoration: none;
+    color: #fff;
 }
 
 li {
@@ -165,13 +166,6 @@ li {
     transition: 0.5s;
 }
 
-.submit-btn {
-    width: 100%;
-    border-radius: 5px;
-    border: 0;
-    padding: 15px 0;
-    cursor: pointer;
-}
 
 .white-link {
     color: #fff;
@@ -191,4 +185,66 @@ li {
 .red-link:hover {
     color: #ff4b4b;
     transition: 0.5s;
+}
+
+.s-input {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-indent: 1em;
+    margin-bottom: 10px;
+    outline: none;
+    border: 0;
+    font-size: 16px;
+    border-radius: 5px;
+    height: 24px;
+}
+
+.l-input {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-indent: 1em;
+    outline: none;
+    width: 100%;
+    padding: 15px 0;
+    border-radius: 5px;
+    border: 0;
+    font-size: 24px;
+    margin-bottom: 3px;
+}
+
+.s-submit {
+    width: 100%;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.l-submit {
+    width: 100%;
+    border-radius: 5px;
+    border: 0;
+    padding: 15px 0;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+.flexColumnForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.lt-btn {
+    display: block;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.rt-btn {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
 }
