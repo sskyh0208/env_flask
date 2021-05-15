@@ -27,7 +27,11 @@
             </div>
             <ul class="card-header-nav">
                 <li class="card-header-nav-item">
+                    {% if words_count[book.id] %}
                     <a href="/game/{{ book.id }}" class="red-link">タイピング</a>
+                    {% else %}
+                    <a href="#" class="grey-link eventDisable">タイピング</a>
+                    {% endif %}
                 </li>
                 <li class="card-header-nav-item">
                     <a href="/score/{{ book.id }}" class="red-link">スコア</a>

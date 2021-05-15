@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from wtforms.form import Form
 from wtforms.fields import StringField, PasswordField, SubmitField, TextAreaField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import Blueprint, abort, render_template, redirect, url_for ,request, flash, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 
@@ -92,7 +94,11 @@ def books():
         db.session.commit()
         return redirect(url_for('app.books'))
     books = Book.select_by_user_id(current_user.id)
-    return render_template('books.html', form=form, books=books)
+    # 単語0個の場合タイピングゲームをできなくする
+    words_count = {}
+    for book in books:
+        words_count[book.id] = Word.query.filter_by(book_id=book.id).count()
+    return render_template('books.html', form=form, books=books, words_count=words_count)
 
 # 単語追加画面
 @bp.route('/words/<int:book_id>', methods=['GET', 'POST'])
